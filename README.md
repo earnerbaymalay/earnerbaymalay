@@ -8,11 +8,11 @@
 ## ?? ASCII PORTRAIT
 
 <p align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&icon_color=e8b44c&text_color=f5f5f5&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&icon_color=d4a843&text_color=fafafa&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
 </p>
 
 <p align="center">
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=e8b44c&currStreakLabel=e8b44c&sideLabels=f5f5f5" alt="GitHub Streak" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=d4a843&currStreakLabel=d4a843&sideLabels=fafafa" alt="GitHub Streak" />
 </p>
 
 <p align="center">
@@ -20,11 +20,11 @@
 </p>
 
 <p align="center">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&text_color=f5f5f5" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&text_color=fafafa" alt="Top Languages" />
 </p>
 
 <p align="center">
-Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=e8b44c&style=flat-square" alt="Profile Views" />
+Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=d4a843&style=flat-square" alt="Profile Views" />
 </p>
 
 ---
@@ -72,16 +72,13 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![ONNX](https://img.shields.io/badge/ONNX-005CED?style=for-the-badge&logo=onnx&logoColor=white)
 
-### Hardware & Security
-![Flipper Zero](https://img.shields.io/badge/Flipper%20Zero-FF8C00?style=for-the-badge&logo=flipperzero&logoColor=white)
-![Obsidian](https://img.shields.io/badge/Obsidian-7C3AED?style=for-the-badge&logo=obsidian&logoColor=white)
-
 ---
 
-## ?? ACTIVE PROJECTS
+## ?? ACTIVE PROJECTS — SYNAPSE FIRST
 
 | Project | Description | Status | Stack |
 |---------|-------------|--------|-------|
+| [**SYNAPSE / llm-neuro-surgeon**](https://github.com/earnerbaymalay/llm-neuro-surgeon) | **Local-first configuration engine & synchronizer** — keeps Claude Code, Cursor, Gemini, Windsurf, Zed, and all AI coding companions in permanent lockstep. Rust core, zero telemetry. | ?? **ACTIVE · FLAGSHIP** | Rust · Local LLM · Git · Zero telemetry |
 | [**aether**](https://github.com/earnerbaymalay/aether) | Offline AI workstation. 4 specialised models on-device via llama.cpp | ?? Active | llama.cpp, Rust, Python, Tauri |
 | [**aether-droid**](https://github.com/earnerbaymalay/aether-droid) | Fully offline Android AI workstation | ?? Active | Termux, Shell, llama.cpp |
 | [**aether-tauri**](https://github.com/earnerbaymalay/aether-tauri) | Tauri Desktop Edition (macOS/Windows/Linux) | ?? Active | Rust, Vite, React, Python |
@@ -121,19 +118,17 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 
 | Device | Specs | Role |
 |--------|-------|------|
-| **main pc** | i7-8700 · MSI Z390-A PRO · GTX 1660 · Windows + WSL2 | Primary dev / inference |
-| **phone** | Pixel 8 Pro · stock Android · Termux AI workspace | Mobile inference / testing |
-| **target** | Nokia XR20 · Snapdragon 480 · ~4.5 GB usable · =3B param | Edge deployment target |
-| **macbook** | A1708 · macOS via OpenCore Legacy Patcher | Cross-platform testing |
-| **lenovo** | IdeaCentre · secondary workstation | CI / background jobs |
-| **rf research** | Flipper Zero · 433.92 MHz · Keeloq / rolling code | Hardware security research |
+| **Surface Pro 9** | i7-1255U · 16GB LPDDR5 · Intel Iris Xe | Primary dev · Inference · Mobile |
+| **Desktop Build** | In progress · Target: Ryzen 9 · 64GB · RTX 4090 | Primary inference · Training · CI |
+| **Target Device** | Nokia XR20 · Snapdragon 480 · ~4.5 GB usable · =3B param | Edge deployment target |
+| **MacBook** | A1708 · macOS via OpenCore Legacy Patcher | Cross-platform testing |
 
 ---
 
 ## ?? CONNECT
 
 - **GitHub**: [@earnerbaymalay](https://github.com/earnerbaymalay)
-- **Instagram**: [@verswun](https://instagram.com/verswun)
+- **Instagram**: [@v.erswun](https://instagram.com/v.erswun)
 
 ---
 
@@ -141,4 +136,4 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 
 **GitHub Pages (Nocta theme):** https://earnerbaymalay.github.io/earnerbaymalay/
 
-*Built with Nocta design language · Typography: Space Grotesk / JetBrains Mono · Dark mode native*
+*Built with Nocta design language · Typography: Geist / Geist Mono · Dark mode only*

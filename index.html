@@ -3,93 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>earnerbaymalay — Local-First Systems</title>
+  <title>earnerbaymalay — SYNAPSE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --nocta-black: #0a0a0a;
-      --nocta-dark: #111111;
-      --nocta-card: #1a1a1a;
-      --nocta-border: #2a2a2a;
-      --nocta-fg: #f5f5f5;
-      --nocta-muted: #737373;
-      --nocta-accent: #e8b44c;
-      --nocta-accent-dim: rgba(232,180,76,0.4);
-      --nocta-white: #ffffff;
-      --font-display: "Space Grotesk", sans-serif;
-      --font-mono: "JetBrains Mono", monospace;
+      --void: #000000;
+      --void-elevated: #0a0a0a;
+      --void-card: #111111;
+      --void-border: #1a1a1a;
+      --fg: #fafafa;
+      --fg-muted: #a3a3a3;
+      --fg-subtle: #525252;
+      --accent: #d4a843;
+      --accent-glow: rgba(212, 168, 67, 0.15);
+      --accent-strong: #e8c56d;
+      --danger: #dc2626;
       --radius: 0;
-      --transition: 200ms ease;
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --nocta-black: #fafafa;
-        --nocta-dark: #f5f5f5;
-        --nocta-card: #ffffff;
-        --nocta-border: #e5e5e5;
-        --nocta-fg: #171717;
-        --nocta-muted: #737373;
-        --nocta-accent: #b8860b;
-        --nocta-accent-dim: rgba(184,134,11,0.3);
-        --nocta-white: #000000;
-      }
+      --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --glow: 0 0 40px rgba(212, 168, 67, 0.08), 0 0 80px rgba(212, 168, 67, 0.04);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-mono);
-      background: var(--nocta-black);
-      color: var(--nocta-fg);
-      line-height: 1.6;
+      font-family: "Geist Mono", "JetBrains Mono", "Fira Code", monospace;
+      background: var(--void);
+      color: var(--fg);
+      line-height: 1.7;
       min-height: 100vh;
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
-    a { color: var(--nocta-accent); text-decoration: none; transition: opacity var(--transition); }
-    a:hover { opacity: 0.7; }
-    .section { padding: 48px 0; border-top: 1px solid var(--nocta-border); }
-    .section:first-child { border-top: none; padding-top: 24px; }
-    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
-    .section-title { font-size: 20px; font-weight: 600; color: var(--nocta-fg); }
-    .section-subtitle { color: var(--nocta-muted); font-size: 13px; font-weight: 400; }
+    /* Ambient background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 67, 0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(212, 168, 67, 0.02) 0%, transparent 60%),
+        linear-gradient(180deg, transparent 0%, var(--void) 100%);
+      pointer-events: none;
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(1px 1px at 20px 30px, var(--fg-subtle), transparent),
+        radial-gradient(1px 1px at 60px 70px, var(--fg-subtle), transparent),
+        radial-gradient(1px 1px at 120px 150px, var(--fg-subtle), transparent),
+        radial-gradient(1px 1px at 200px 200px, var(--fg-subtle), transparent),
+        radial-gradient(1px 1px at 300px 100px, var(--fg-subtle), transparent),
+        radial-gradient(1px 1px at 400px 300px, var(--fg-subtle), transparent);
+      background-repeat: repeat;
+      background-size: 500px 500px;
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: -1;
+      animation: drift 120s linear infinite;
+    }
+    @keyframes drift { 0% { transform: translate(0, 0); } 100% { transform: translate(-500px, -500px); } }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+    h1, h2, h3, h4 { font-family: "Geist", sans-serif; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); position: relative; }
+    a::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width var(--transition); }
+    a:hover::after { width: 100%; }
+    a:hover { opacity: 1; color: var(--accent-strong); }
+    .section { padding: 64px 0; border-top: 1px solid var(--void-border); }
+    .section:first-child { border-top: none; padding-top: 0; }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--fg); }
+    .section-subtitle { color: var(--fg-muted); font-size: 13px; font-weight: 400; font-family: "Geist Mono", monospace; }
     .grid { display: grid; gap: 16px; }
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
-    .card { background: var(--nocta-card); border: 1px solid var(--nocta-border); padding: 24px; transition: border-color var(--transition), transform var(--transition); }
-    .card:hover { border-color: var(--nocta-accent-dim); transform: translateY(-2px); }
-    .badge { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--nocta-border); border-radius: 4px; font-size: 11px; font-weight: 500; color: var(--nocta-muted); transition: all var(--transition); }
-    .badge:hover { border-color: var(--nocta-accent); color: var(--nocta-accent); }
-    .badge.active { border-color: var(--nocta-accent); color: var(--nocta-accent); background: var(--nocta-accent-dim); }
-    .status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; }
+    @media (max-width: 900px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+    .card { background: var(--void-card); border: 1px solid var(--void-border); padding: 28px; transition: all var(--transition); position: relative; overflow: hidden; }
+    .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-glow), transparent); opacity: 0; transition: opacity var(--transition); }
+    .card:hover { border-color: rgba(212, 168, 67, 0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+    .card:hover::before { opacity: 1; }
+    .badge { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--void-border); border-radius: 2px; font-size: 11px; font-weight: 500; color: var(--fg-muted); transition: all var(--transition); font-family: "Geist Mono", monospace; background: var(--void-card); }
+    .badge:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .badge.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; font-family: "Geist Mono", monospace; }
     .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
-    .status.active::before { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
-    .status.planned::before { background: var(--nocta-accent); box-shadow: 0 0 8px var(--nocta-accent); }
-    .table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .table th { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--nocta-border); font-weight: 500; color: var(--nocta-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .table td { padding: 12px 16px; border-bottom: 1px solid var(--nocta-border); }
+    .status.active::before { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+    .status.planned::before { background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .status.archived::before { background: var(--fg-subtle); }
+    .table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: "Geist Mono", monospace; }
+    .table th { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--void-border); font-weight: 600; color: var(--fg-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .table td { padding: 14px 18px; border-bottom: 1px solid var(--void-border); }
     .table tr:last-child td { border-bottom: none; }
-    .table tr:hover td { background: var(--nocta-dark); }
-    .code { font-family: var(--font-mono); font-size: 12px; background: var(--nocta-dark); padding: 2px 6px; border-radius: 3px; }
-    .ascii-block { font-family: var(--font-mono); font-size: 9px; line-height: 1.1; white-space: pre; background: var(--nocta-card); border: 1px solid var(--nocta-border); padding: 24px; border-radius: 0; overflow-x: auto; color: var(--nocta-accent); }
-    .widget-frame { background: var(--nocta-card); border: 1px solid var(--nocta-border); border-radius: 0; overflow: hidden; }
+    .table tr { transition: background var(--transition); }
+    .table tr:hover td { background: var(--void-elevated); }
+    .code { font-family: "Geist Mono", monospace; font-size: 12px; background: var(--void-elevated); padding: 3px 8px; border-radius: 2px; border: 1px solid var(--void-border); }
+    .ascii-block { font-family: "Geist Mono", monospace; font-size: 8px; line-height: 1.05; white-space: pre; background: var(--void-card); border: 1px solid var(--void-border); padding: 28px; border-radius: 0; overflow-x: auto; color: var(--accent); letter-spacing: 0.5px; }
+    .widget-frame { background: var(--void-card); border: 1px solid var(--void-border); border-radius: 0; overflow: hidden; transition: all var(--transition); }
+    .widget-frame:hover { border-color: rgba(212, 168, 67, 0.3); box-shadow: var(--glow); }
     .widget-frame img { display: block; width: 100%; height: auto; }
-    .footer { padding: 48px 0 24px; border-top: 1px solid var(--nocta-border); text-align: center; color: var(--nocta-muted); font-size: 12px; }
-    .footer a { color: var(--nocta-muted); }
-    .footer a:hover { color: var(--nocta-accent); }
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--nocta-border), transparent); margin: 32px 0; }
-    .hero { text-align: center; padding: 64px 0 48px; }
-    .hero-title { font-size: clamp(28px, 5vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; background: linear-gradient(135deg, var(--nocta-fg) 0%, var(--nocta-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-subtitle { font-size: 16px; color: var(--nocta-muted); max-width: 600px; margin: 0 auto 32px; line-height: 1.7; }
-    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 32px; font-size: 12px; color: var(--nocta-muted); }
-    .hero-meta-item { display: flex; align-items: center; gap: 6px; }
+    .footer { padding: 64px 0 32px; border-top: 1px solid var(--void-border); text-align: center; color: var(--fg-subtle); font-size: 12px; font-family: "Geist Mono", monospace; }
+    .footer a { color: var(--fg-subtle); }
+    .footer a:hover { color: var(--accent); }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--void-border), transparent); margin: 48px 0; }
+    .hero { text-align: center; padding: 80px 0 64px; position: relative; }
+    .hero::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 168, 67, 0.04) 0%, transparent 70%); pointer-events: none; z-index: -1; }
+    .hero-title { font-size: clamp(36px, 6vw, 64px); font-weight: 800; letter-spacing: -0.04em; margin-bottom: 20px; background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 50%, var(--fg) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; background-size: 200% 200%; animation: shimmer 4s ease-in-out infinite; }
+    @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .hero-subtitle { font-size: 18px; color: var(--fg-muted); max-width: 700px; margin: 0 auto 40px; line-height: 1.8; font-weight: 300; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 48px; font-size: 12px; color: var(--fg-subtle); font-family: "Geist Mono", monospace; }
+    .hero-meta-item { display: flex; align-items: center; gap: 8px; opacity: 0.7; transition: opacity var(--transition); }
+    .hero-meta-item:hover { opacity: 1; }
     .hero-meta-item svg { width: 14px; height: 14px; }
+    .widget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+    .widget-frame { background: var(--void-card); border: 1px solid var(--void-border); border-radius: 0; overflow: hidden; transition: all var(--transition); }
+    .widget-frame:hover { border-color: rgba(212, 168, 67, 0.3); box-shadow: var(--glow); }
+    .widget-frame img { display: block; width: 100%; height: auto; }
+    .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+    .scroll-reveal:nth-child(1) { transition-delay: 100ms; }
+    .scroll-reveal:nth-child(2) { transition-delay: 200ms; }
+    .scroll-reveal:nth-child(3) { transition-delay: 300ms; }
+    .scroll-reveal:nth-child(4) { transition-delay: 400ms; }
+    .scroll-reveal:nth-child(5) { transition-delay: 500ms; }
+    .scroll-reveal:nth-child(6) { transition-delay: 600ms; }
+    .ascii-block { font-family: "Geist Mono", monospace; font-size: 7px; line-height: 1.0; white-space: pre; background: var(--void-card); border: 1px solid var(--void-border); padding: 32px; border-radius: 0; overflow-x: auto; color: var(--accent); letter-spacing: 0.3px; }
+    @media (max-width: 900px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .hero-title { font-size: 36px; } .section { padding: 48px 0; } .container { padding: 0 20px; } }
   </style>
 </head>
 <body>
@@ -108,59 +155,59 @@
     <div class="divider"></div>
 
     <!-- ASCII PORTRAIT -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">ASCII PORTRAIT</h2>
         <span class="section-subtitle">Generated from avatar · Monospace grid</span>
       </header>
       <div class="ascii-block" id="ascii-portrait">
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
-??????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
+?????????????????????????????????????
       </div>
-      <p style="text-align:center; margin-top:16px; color:var(--nocta-muted); font-size:12px;">Replace with generated ASCII from <a href="https://gitascii.com/">GitAscii</a> or <a href="https://ascii-profile-readme-generator.vercel.app">ASCII Profile Generator</a></p>
+      <p style="text-align:center; margin-top:16px; color:var(--fg-subtle); font-size:11px; font-family: 'Geist Mono', monospace;">Replace with generated ASCII from <a href="https://gitascii.com/">GitAscii</a> or <a href="https://ascii-profile-readme-generator.vercel.app">ASCII Profile Generator</a></p>
     </section>
 
     <div class="divider"></div>
 
     <!-- SYSTEM SPECS -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">SYSTEM SPECS</h2>
         <span class="section-subtitle">Runtime environment · Hardware inventory</span>
       </header>
       <div class="grid grid-3">
         <div class="card">
-          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">BASE</div>
-          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">6K, Perth, WA</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">GMT+8</div>
+          <div style="font-size:11px; color:var(--fg-muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em;">BASE</div>
+          <div style="font-size:15px; font-weight:600; color:var(--fg);">6K, Perth, WA</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:4px;">GMT+8</div>
         </div>
         <div class="card">
-          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">CERTIFICATION</div>
-          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">Cert III IT</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">Hardware repair & resale</div>
+          <div style="font-size:11px; color:var(--fg-muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em;">CERTIFICATION</div>
+          <div style="font-size:15px; font-weight:600; color:var(--fg);">Cert III IT</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:4px;">Hardware repair & resale</div>
         </div>
         <div class="card">
-          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">FOCUS</div>
-          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">Local AI Systems</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">11+ models on-device</div>
+          <div style="font-size:11px; color:var(--fg-muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em;">FOCUS</div>
+          <div style="font-size:15px; font-weight:600; color:var(--fg);">Local AI Systems</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:4px;">11+ models on-device</div>
         </div>
       </div>
     </section>
@@ -168,7 +215,7 @@
     <div class="divider"></div>
 
     <!-- TECH STACK -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">TECH STACK</h2>
         <span class="section-subtitle">Languages · Frameworks · Platforms · AI/ML</span>
@@ -197,42 +244,40 @@
         <span class="badge" style="border-color:#FFD21E; color:#000000;">Hugging Face</span>
         <span class="badge" style="border-color:#EE4C2C; color:#EE4C2C;">PyTorch</span>
         <span class="badge" style="border-color:#005CED; color:#005CED;">ONNX</span>
-        <span class="badge" style="border-color:#FF8C00; color:#FF8C00;">Flipper Zero</span>
-        <span class="badge" style="border-color:#7C3AED; color:#7C3AED;">Obsidian</span>
       </div>
     </section>
 
     <div class="divider"></div>
 
     <!-- LIVE WIDGETS -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">LIVE METRICS</h2>
         <span class="section-subtitle">Auto-updating · Transparent backgrounds · Tokyonight theme</span>
       </header>
       <div class="grid grid-2">
         <div class="widget-frame">
-          <img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&icon_color=e8b44c&text_color=f5f5f5&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
+          <img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&icon_color=d4a843&text_color=fafafa&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
         </div>
         <div class="widget-frame">
-          <img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=e8b44c&currStreakLabel=e8b44c&sideLabels=f5f5f5" alt="GitHub Streak" />
+          <img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=d4a843&currStreakLabel=d4a843&sideLabels=fafafa" alt="GitHub Streak" />
         </div>
       </div>
-      <div class="grid grid-2" style="margin-top:16px;">
+      <div class="grid grid-2" style="margin-top:20px;">
         <div class="widget-frame">
           <img src="https://github-profile-trophy.vercel.app/?username=earnerbaymalay&theme=tokyonight&no-frame=true&no-bg=true&margin-w=15&margin-h=15" alt="GitHub Trophies" />
         </div>
         <div class="widget-frame">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&text_color=f5f5f5" alt="Top Languages" />
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&text_color=fafafa" alt="Top Languages" />
         </div>
       </div>
-      <p style="text-align:center; margin-top:16px; color:var(--nocta-muted); font-size:12px;">Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=e8b44c&style=flat-square" alt="Views" /></p>
+      <p style="text-align:center; margin-top:20px; color:var(--fg-subtle); font-size:11px; font-family: 'Geist Mono', monospace;">Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=d4a843&style=flat-square" alt="Views" /></p>
     </section>
 
     <div class="divider"></div>
 
-    <!-- ACTIVE PROJECTS -->
-    <section class="section">
+    <!-- ACTIVE PROJECTS - SYNAPSE FIRST -->
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">ACTIVE PROJECTS</h2>
         <span class="section-subtitle">Production · Maintained · Local-first</span>
@@ -242,6 +287,12 @@
           <tr><th>PROJECT</th><th>DESCRIPTION</th><th>STATUS</th><th>STACK</th></tr>
         </thead>
         <tbody>
+          <tr style="background: var(--accent-glow); border: 1px solid rgba(212, 168, 67, 0.2);">
+            <td><a href="https://github.com/earnerbaymalay/llm-neuro-surgeon"><span class="code">SYNAPSE / llm-neuro-surgeon</span></a></td>
+            <td><strong>Local-first configuration engine & synchronizer</strong> — keeps Claude Code, Cursor, Gemini, Windsurf, Zed, and all AI coding companions in permanent lockstep. Rust core, zero telemetry.</td>
+            <td><span class="status active">ACTIVE · FLAGSHIP</span></td>
+            <td>Rust · Local LLM · Git · Zero telemetry</td>
+          </tr>
           <tr>
             <td><a href="https://github.com/earnerbaymalay/aether"><span class="code">aether</span></a></td>
             <td>Offline AI workstation. 4 specialised models on-device via llama.cpp</td>
@@ -279,7 +330,7 @@
     <div class="divider"></div>
 
     <!-- PLANNED PROJECTS -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">PLANNED PROJECTS</h2>
         <span class="section-subtitle">In design · Next up</span>
@@ -326,7 +377,7 @@
     <div class="divider"></div>
 
     <!-- MODEL REGISTRY -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">MODEL REGISTRY</h2>
         <span class="section-subtitle">Local inference fleet · Quantized · On-device</span>
@@ -351,41 +402,31 @@
     <div class="divider"></div>
 
     <!-- HARDWARE FLEET -->
-    <section class="section">
+    <section class="section scroll-reveal">
       <header class="section-header">
         <h2 class="section-title">HARDWARE FLEET</h2>
         <span class="section-subtitle">Compute targets · Deployment targets · Research</span>
       </header>
       <div class="grid grid-2">
         <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">MAIN PC</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">i7-8700 · MSI Z390-A PRO · GTX 1660</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Windows + WSL2 · Primary dev / inference</div>
+          <div style="font-weight:600; color:var(--fg); margin-bottom:4px; font-family: 'Geist', sans-serif;">SURFACE PRO 9</div>
+          <div style="font-size:12px; color:var(--fg-subtle);">i7-1255U · 16GB LPDDR5 · Intel Iris Xe</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:2px;">Primary dev · Inference · Mobile</div>
         </div>
         <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">PHONE</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">Pixel 8 Pro · Stock Android</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Termux AI workspace · Mobile inference</div>
+          <div style="font-weight:600; color:var(--fg); margin-bottom:4px; font-family: 'Geist', sans-serif;">DESKTOP BUILD</div>
+          <div style="font-size:12px; color:var(--fg-subtle);">In progress · Target: Ryzen 9 · 64GB · RTX 4090</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:2px;">Primary inference · Training · CI</div>
         </div>
         <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">TARGET DEVICE</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">Nokia XR20 · Snapdragon 480</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">~4.5 GB usable · =3B param models</div>
+          <div style="font-weight:600; color:var(--fg); margin-bottom:4px; font-family: 'Geist', sans-serif;">TARGET DEVICE</div>
+          <div style="font-size:12px; color:var(--fg-subtle);">Nokia XR20 · Snapdragon 480</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:2px;">~4.5 GB usable · =3B param models</div>
         </div>
         <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">MACBOOK</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">A1708 · macOS via OpenCore Legacy Patcher</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Cross-platform testing</div>
-        </div>
-        <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">SECONDARY</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">Lenovo IdeaCentre</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">CI / Background jobs</div>
-        </div>
-        <div class="card">
-          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">RF RESEARCH</div>
-          <div style="font-size:12px; color:var(--nocta-muted);">Flipper Zero · 433.92 MHz</div>
-          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Keeloq / Rolling code protocols</div>
+          <div style="font-weight:600; color:var(--fg); margin-bottom:4px; font-family: 'Geist', sans-serif;">MACBOOK</div>
+          <div style="font-size:12px; color:var(--fg-subtle);">A1708 · macOS via OpenCore Legacy Patcher</div>
+          <div style="font-size:12px; color:var(--fg-subtle); margin-top:2px;">Cross-platform testing</div>
         </div>
       </div>
     </section>
@@ -393,17 +434,17 @@
     <div class="divider"></div>
 
     <!-- CONNECT -->
-    <section class="section" style="text-align:center;">
+    <section class="section scroll-reveal" style="text-align:center;">
       <header class="section-header" style="justify-content:center;">
         <h2 class="section-title">CONNECT</h2>
       </header>
-      <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
-        <a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:var(--nocta-muted); font-size:13px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      <div style="display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:24px;">
+        <a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:10px; color:var(--fg-muted); font-size:13px; font-family: 'Geist Mono', monospace; transition: color var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           <span>GitHub</span>
         </a>
-        <a href="https://instagram.com/verswun" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:var(--nocta-muted); font-size:13px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.127-1.283-.14-1.69-.14-4.943 0-3.26.013-3.667.073-4.947.147-4.355 2.627-6.783 6.98-6.98 1.281-.058 1.689-.072 4.947-.072z"/></svg>
+        <a href="https://instagram.com/v.erswun" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:10px; color:var(--fg-muted); font-size:13px; font-family: 'Geist Mono', monospace; transition: color var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-3.584-.07-4.849-.149-3.225-1.664-4.771-4.919-4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-3.584-.07-4.849-.149-3.225-1.664-4.771-4.919-4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-3.584-.07-4.849zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.78-6.98-.196-4.354-2.617-6.78-6.98-.127-1.283-.14-1.69-.14-4.943 0-3.26.013-3.667.073-4.947.147-4.355 2.627-6.783 6.98-6.98 1.281-.058 1.689-.072 4.947-.072z"/></svg>
           <span>Instagram</span>
         </a>
       </div>
@@ -413,9 +454,37 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <p>Built with Nocta design language · Typography: Space Grotesk / JetBrains Mono · Dark mode native</p>
+      <p>Built with Nocta design language · Typography: Geist / Geist Mono · Dark mode only</p>
       <p><a href="https://github.com/earnerbaymalay/earnerbaymalay">Source</a> · <a href="https://earnerbaymalay.github.io/earnerbaymalay/">GitHub Pages</a></p>
     </footer>
   </div>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // Subtle parallax on hero
+    window.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / 30;
+      const y = (e.clientY - rect.top - rect.height / 2) / 30;
+      hero.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      const hero = document.querySelector('.hero');
+      if (hero) hero.style.transform = 'translate(0, 0)';
+    });
+  </script>
 </body>
 </html>
