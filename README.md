@@ -79,9 +79,6 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 | Project | Description | Status | Stack |
 |---------|-------------|--------|-------|
 | [**SYNAPSE / llm-neuro-surgeon**](https://github.com/earnerbaymalay/llm-neuro-surgeon) | **Local-first configuration engine & synchronizer** — keeps Claude Code, Cursor, Gemini, Windsurf, Zed, and all AI coding companions in permanent lockstep. Rust core, zero telemetry. | ?? **ACTIVE · FLAGSHIP** | Rust · Local LLM · Git · Zero telemetry |
-| [**aether**](https://github.com/earnerbaymalay/aether) | Offline AI workstation. 4 specialised models on-device via llama.cpp | ?? Active | llama.cpp, Rust, Python, Tauri |
-| [**aether-droid**](https://github.com/earnerbaymalay/aether-droid) | Fully offline Android AI workstation | ?? Active | Termux, Shell, llama.cpp |
-| [**aether-tauri**](https://github.com/earnerbaymalay/aether-tauri) | Tauri Desktop Edition (macOS/Windows/Linux) | ?? Active | Rust, Vite, React, Python |
 | [**palexus-brain**](https://github.com/earnerbaymalay/palexus-brain) | Canonical AI brain for PalexusOS. One Brain, all models; local-first | ?? Active | Rust, Python |
 | [**cyph3rchat**](https://github.com/earnerbaymalay/cyph3rchat) | Private E2E encrypted messaging. No phone numbers, no accounts | ?? Active | WebCrypto, PWA, Rust |
 
@@ -96,6 +93,11 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 | **AI Pentesting Agent** | Autonomous red-team agent, local-only, MITRE reports | Rust, Python, local LLM, Tauri |
 | **Code Intelligence Suite** | SpecGen · DepRadar · Knowledge?SRS · ChangelogAI (merged) | Rust, Local LLM, Tauri, Obsidian |
 | **Prompt Registry & A/B Lab** | Version prompts, A/B test against model fleet | SQLite, Rust, Ollama, GitHub Actions |
+| **Knowledge ? Anki/FSRS Exporter** | Obsidian vault ? FSRS cards via local LLM | Rust, Ollama, notify |
+| **Release Notes Composer** | LLM reads diffs/issues/commits ? changelog | Rust, Local LLM, GitHub Actions |
+| **Terminal Session Replay & Search** | PTY capture + vector search over commands | Rust, SQLite, Ollama |
+| **MLOps Dashboard** | Model versioning across device fleet, edge promote | Rust, Git, Ollama |
+| **Code Review Agent** | Specialized small model reviews PRs against your patterns | Rust, Git hooks, local LLM |
 
 ---
 
