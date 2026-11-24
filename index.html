@@ -3,267 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>earnerbaymalay — Local-First AI, Offline Workstations, Secure Tools</title>
+  <title>earnerbaymalay — Local-First Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic:wght@400;700&family=Noto+Sans+Gothic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --fg: #d4d4d8;
-      --muted: #9ca3af;
-      --accent: #c0392b;
-      --primary: #1a1a24;
-      --card: rgba(26,26,36,0.85);
-      --border: rgba(192,57,43,0.3);
-      --radius: 12px;
-      --font-display: "Didact Gothic", serif;
-      --font-body: "Noto Sans Gothic", sans-serif;
-      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --nocta-black: #0a0a0a;
+      --nocta-dark: #111111;
+      --nocta-card: #1a1a1a;
+      --nocta-border: #2a2a2a;
+      --nocta-fg: #f5f5f5;
+      --nocta-muted: #737373;
+      --nocta-accent: #e8b44c;
+      --nocta-accent-dim: rgba(232,180,76,0.4);
+      --nocta-white: #ffffff;
+      --font-display: "Space Grotesk", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+      --radius: 0;
+      --transition: 200ms ease;
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #fafafa;
-        --fg: #1a1a24;
-        --muted: #6b7280;
-        --accent: #c0392b;
-        --primary: #f5f5f5;
-        --card: rgba(255,255,255,0.9);
-        --border: rgba(192,57,43,0.2);
-        --shadow: 0 4px 24px rgba(0,0,0,0.1);
+        --nocta-black: #fafafa;
+        --nocta-dark: #f5f5f5;
+        --nocta-card: #ffffff;
+        --nocta-border: #e5e5e5;
+        --nocta-fg: #171717;
+        --nocta-muted: #737373;
+        --nocta-accent: #b8860b;
+        --nocta-accent-dim: rgba(184,134,11,0.3);
+        --nocta-white: #000000;
       }
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--fg);
+      font-family: var(--font-mono);
+      background: var(--nocta-black);
+      color: var(--nocta-fg);
       line-height: 1.6;
       min-height: 100vh;
-      padding: 2rem 1rem;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .container { max-width: 900px; margin: 0 auto; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 0.5rem; color: var(--accent); }
-    .tagline { text-align: center; color: var(--muted); margin-bottom: 2rem; font-size: 1.1rem; }
-    .section { margin: 2.5rem 0; padding: 1.5rem; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .section h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
-    .badge-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
-    .badge { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
-    .badge:hover { transform: translateY(-2px); }
-    .badge img { height: 18px; margin-right: 0.4rem; }
-    .project-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-    .project-table th, .project-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
-    .project-table th { color: var(--accent); font-family: var(--font-display); }
-    .status-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
-    .status-active { background: rgba(80,200,120,0.2); color: #50c878; }
-    .status-planned { background: rgba(255,180,50,0.2); color: #ffb432; }
-    .widget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0; }
-    .widget { background: var(--primary); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
-    .widget img { max-width: 100%; height: auto; border-radius: 8px; }
-    .models-table, .hardware-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    .models-table th, .models-table td, .hardware-table th, .hardware-table td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
-    .models-table th, .hardware-table th { color: var(--accent); font-family: var(--font-display); }
-    .resource-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    .resource-table th, .resource-table td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
-    .resource-table th { color: var(--accent); font-family: var(--font-display); }
-    .resource-table a { color: var(--accent); text-decoration: none; }
-    .resource-table a:hover { text-decoration: underline; }
-    .ascii-portrait { font-family: monospace; white-space: pre; text-align: center; background: var(--primary); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); overflow-x: auto; font-size: 0.7rem; line-height: 1.2; }
-    .footer { text-align: center; margin-top: 3rem; padding: 1.5rem; color: var(--muted); font-size: 0.9rem; }
-    .footer a { color: var(--accent); }
-    @media (max-width: 600px) {
-      .section { padding: 1rem; }
-      .project-table, .models-table, .hardware-table, .resource-table { font-size: 0.75rem; }
-    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
+    a { color: var(--nocta-accent); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.7; }
+    .section { padding: 48px 0; border-top: 1px solid var(--nocta-border); }
+    .section:first-child { border-top: none; padding-top: 24px; }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .section-title { font-size: 20px; font-weight: 600; color: var(--nocta-fg); }
+    .section-subtitle { color: var(--nocta-muted); font-size: 13px; font-weight: 400; }
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+    .card { background: var(--nocta-card); border: 1px solid var(--nocta-border); padding: 24px; transition: border-color var(--transition), transform var(--transition); }
+    .card:hover { border-color: var(--nocta-accent-dim); transform: translateY(-2px); }
+    .badge { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--nocta-border); border-radius: 4px; font-size: 11px; font-weight: 500; color: var(--nocta-muted); transition: all var(--transition); }
+    .badge:hover { border-color: var(--nocta-accent); color: var(--nocta-accent); }
+    .badge.active { border-color: var(--nocta-accent); color: var(--nocta-accent); background: var(--nocta-accent-dim); }
+    .status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; }
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+    .status.active::before { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+    .status.planned::before { background: var(--nocta-accent); box-shadow: 0 0 8px var(--nocta-accent); }
+    .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .table th { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--nocta-border); font-weight: 500; color: var(--nocta-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .table td { padding: 12px 16px; border-bottom: 1px solid var(--nocta-border); }
+    .table tr:last-child td { border-bottom: none; }
+    .table tr:hover td { background: var(--nocta-dark); }
+    .code { font-family: var(--font-mono); font-size: 12px; background: var(--nocta-dark); padding: 2px 6px; border-radius: 3px; }
+    .ascii-block { font-family: var(--font-mono); font-size: 9px; line-height: 1.1; white-space: pre; background: var(--nocta-card); border: 1px solid var(--nocta-border); padding: 24px; border-radius: 0; overflow-x: auto; color: var(--nocta-accent); }
+    .widget-frame { background: var(--nocta-card); border: 1px solid var(--nocta-border); border-radius: 0; overflow: hidden; }
+    .widget-frame img { display: block; width: 100%; height: auto; }
+    .footer { padding: 48px 0 24px; border-top: 1px solid var(--nocta-border); text-align: center; color: var(--nocta-muted); font-size: 12px; }
+    .footer a { color: var(--nocta-muted); }
+    .footer a:hover { color: var(--nocta-accent); }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--nocta-border), transparent); margin: 32px 0; }
+    .hero { text-align: center; padding: 64px 0 48px; }
+    .hero-title { font-size: clamp(28px, 5vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; background: linear-gradient(135deg, var(--nocta-fg) 0%, var(--nocta-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 16px; color: var(--nocta-muted); max-width: 600px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 32px; font-size: 12px; color: var(--nocta-muted); }
+    .hero-meta-item { display: flex; align-items: center; gap: 6px; }
+    .hero-meta-item svg { width: 14px; height: 14px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>?? hi, i'm earnzy</h1>
-    <p class="tagline"><strong>IT repair technician by trade, indie developer by obsession.</strong><br>Everything I ship is <strong>free, open source, and works offline.</strong></p>
+    <!-- HERO -->
+    <header class="hero">
+      <h1 class="hero-title">earnerbaymalay</h1>
+      <p class="hero-subtitle">IT repair technician by trade. Indie developer by obsession. Everything ships free, open source, and works offline.</p>
+      <div class="hero-meta">
+        <span class="hero-meta-item">?? 6K, Perth, WA</span>
+        <span class="hero-meta-item">?? Cert III IT · Hardware repair & resale</span>
+        <span class="hero-meta-item">?? Local AI · 11+ models on-device</span>
+      </div>
+    </header>
+
+    <div class="divider"></div>
 
     <!-- ASCII PORTRAIT -->
     <section class="section">
-      <h2>?? ASCII Portrait</h2>
-      <div class="widget-grid">
-        <div class="widget">
-          <img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=58a6ff&icon_color=58a6ff&text_color=d4d4d8&custom_title=earnerbaymalay%20GitHub%20Stats" alt="GitHub Stats" />
+      <header class="section-header">
+        <h2 class="section-title">ASCII PORTRAIT</h2>
+        <span class="section-subtitle">Generated from avatar · Monospace grid</span>
+      </header>
+      <div class="ascii-block" id="ascii-portrait">
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+??????????????????????????????????????
+      </div>
+      <p style="text-align:center; margin-top:16px; color:var(--nocta-muted); font-size:12px;">Replace with generated ASCII from <a href="https://gitascii.com/">GitAscii</a> or <a href="https://ascii-profile-readme-generator.vercel.app">ASCII Profile Generator</a></p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SYSTEM SPECS -->
+    <section class="section">
+      <header class="section-header">
+        <h2 class="section-title">SYSTEM SPECS</h2>
+        <span class="section-subtitle">Runtime environment · Hardware inventory</span>
+      </header>
+      <div class="grid grid-3">
+        <div class="card">
+          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">BASE</div>
+          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">6K, Perth, WA</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">GMT+8</div>
         </div>
-        <div class="widget">
-          <img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=58a6ff&currStreakLabel=58a6ff&sideLabels=d4d4d8" alt="GitHub Streak" />
+        <div class="card">
+          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">CERTIFICATION</div>
+          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">Cert III IT</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">Hardware repair & resale</div>
+        </div>
+        <div class="card">
+          <div style="font-size:11px; color:var(--nocta-muted); margin-bottom:8px;">FOCUS</div>
+          <div style="font-size:14px; font-weight:600; color:var(--nocta-fg);">Local AI Systems</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:4px;">11+ models on-device</div>
         </div>
       </div>
-      <div class="widget-grid">
-        <div class="widget">
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TECH STACK -->
+    <section class="section">
+      <header class="section-header">
+        <h2 class="section-title">TECH STACK</h2>
+        <span class="section-subtitle">Languages · Frameworks · Platforms · AI/ML</span>
+      </header>
+      <div class="grid grid-4" style="gap:8px;">
+        <span class="badge" style="border-color:#3776AB; color:#3776AB;">Python</span>
+        <span class="badge" style="border-color:#4EAA25; color:#4EAA25;">Bash</span>
+        <span class="badge" style="border-color:#7F52FF; color:#7F52FF;">Kotlin</span>
+        <span class="badge" style="border-color:#000000; color:#000000;">Rust</span>
+        <span class="badge" style="border-color:#F7DF1E; color:#000000;">JavaScript</span>
+        <span class="badge" style="border-color:#3178C6; color:#3178C6;">TypeScript</span>
+        <span class="badge" style="border-color:#4285F4; color:#4285F4;">Jetpack Compose</span>
+        <span class="badge" style="border-color:#000000; color:#000000;">llama.cpp</span>
+        <span class="badge" style="border-color:#FF6C37; color:#FF6C37;">Ollama</span>
+        <span class="badge" style="border-color:#000000; color:#000000;">Termux</span>
+        <span class="badge" style="border-color:#24C8DB; color:#24C8DB;">Tauri</span>
+        <span class="badge" style="border-color:#009688; color:#009688;">FastAPI</span>
+        <span class="badge" style="border-color:#61DAFB; color:#000000;">React</span>
+        <span class="badge" style="border-color:#339933; color:#339933;">Node.js</span>
+        <span class="badge" style="border-color:#3DDC84; color:#3DDC84;">Android</span>
+        <span class="badge" style="border-color:#FCC624; color:#000000;">Linux</span>
+        <span class="badge" style="border-color:#0078D6; color:#0078D6;">Windows</span>
+        <span class="badge" style="border-color:#2496ED; color:#2496ED;">Docker</span>
+        <span class="badge" style="border-color:#2088FF; color:#2088FF;">GitHub Actions</span>
+        <span class="badge" style="border-color:#F05032; color:#F05032;">Git</span>
+        <span class="badge" style="border-color:#FFD21E; color:#000000;">Hugging Face</span>
+        <span class="badge" style="border-color:#EE4C2C; color:#EE4C2C;">PyTorch</span>
+        <span class="badge" style="border-color:#005CED; color:#005CED;">ONNX</span>
+        <span class="badge" style="border-color:#FF8C00; color:#FF8C00;">Flipper Zero</span>
+        <span class="badge" style="border-color:#7C3AED; color:#7C3AED;">Obsidian</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- LIVE WIDGETS -->
+    <section class="section">
+      <header class="section-header">
+        <h2 class="section-title">LIVE METRICS</h2>
+        <span class="section-subtitle">Auto-updating · Transparent backgrounds · Tokyonight theme</span>
+      </header>
+      <div class="grid grid-2">
+        <div class="widget-frame">
+          <img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&icon_color=e8b44c&text_color=f5f5f5&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
+        </div>
+        <div class="widget-frame">
+          <img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=e8b44c&currStreakLabel=e8b44c&sideLabels=f5f5f5" alt="GitHub Streak" />
+        </div>
+      </div>
+      <div class="grid grid-2" style="margin-top:16px;">
+        <div class="widget-frame">
           <img src="https://github-profile-trophy.vercel.app/?username=earnerbaymalay&theme=tokyonight&no-frame=true&no-bg=true&margin-w=15&margin-h=15" alt="GitHub Trophies" />
         </div>
-        <div class="widget">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=58a6ff&text_color=d4d4d8" alt="Top Languages" />
+        <div class="widget-frame">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&text_color=f5f5f5" alt="Top Languages" />
         </div>
       </div>
-      <p style="text-align:center; margin-top:1rem; color:var(--muted);">Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=58a6ff&style=flat-square" alt="Views" /></p>
+      <p style="text-align:center; margin-top:16px; color:var(--nocta-muted); font-size:12px;">Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=e8b44c&style=flat-square" alt="Views" /></p>
     </section>
 
-    <!-- LOCATION & CREDENTIALS -->
-    <section class="section">
-      <h2>?? Location & Credentials</h2>
-      <table class="models-table">
-        <tr><th>Base</th><td>6K, Perth, Western Australia</td></tr>
-        <tr><th>Cert</th><td>Cert III in IT · Hardware repair & resale</td></tr>
-        <tr><th>Focus</th><td>Local AI · 11+ models running on-device</td></tr>
-      </table>
-    </section>
+    <div class="divider"></div>
 
-    <!-- TECH STACK BADGES -->
+    <!-- ACTIVE PROJECTS -->
     <section class="section">
-      <h2>??? Tech Stack</h2>
-      <h3 style="margin:1rem 0 0.5rem; color:var(--muted);">Languages</h3>
-      <div class="badge-grid">
-        <span class="badge"><img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">Python</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white" alt="Bash">Bash</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">Kotlin</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white" alt="Rust">Rust</span>
-        <span class="badge"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">JavaScript</span>
-        <span class="badge"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">TypeScript</span>
-      </div>
-      <h3 style="margin:1.5rem 0 0.5rem; color:var(--muted);">Frameworks & Tools</h3>
-      <div class="badge-grid">
-        <span class="badge"><img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=flat-square&logo=android&logoColor=white" alt="Jetpack Compose">Jetpack Compose</span>
-        <span class="badge"><img src="https://img.shields.io/badge/llama.cpp-000000?style=flat-square&logo=github&logoColor=white" alt="llama.cpp">llama.cpp</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Ollama-FF6C37?style=flat-square&logo=ollama&logoColor=white" alt="Ollama">Ollama</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Termux-000000?style=flat-square&logo=termux&logoColor=white" alt="Termux">Termux</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Tauri-24C8DB?style=flat-square&logo=tauri&logoColor=white" alt="Tauri">Tauri</span>
-        <span class="badge"><img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">FastAPI</span>
-        <span class="badge"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React">React</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js">Node.js</span>
-      </div>
-      <h3 style="margin:1.5rem 0 0.5rem; color:var(--muted);">Platforms & Infra</h3>
-      <div class="badge-grid">
-        <span class="badge"><img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android">Android</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" alt="Linux">Linux</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows">Windows</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">Docker</span>
-        <span class="badge"><img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions">GitHub Actions</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git">Git</span>
-      </div>
-      <h3 style="margin:1.5rem 0 0.5rem; color:var(--muted);">AI/ML</h3>
-      <div class="badge-grid">
-        <span class="badge"><img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face">Hugging Face</span>
-        <span class="badge"><img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch">PyTorch</span>
-        <span class="badge"><img src="https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white" alt="ONNX">ONNX</span>
-      </div>
-      <h3 style="margin:1.5rem 0 0.5rem; color:var(--muted);">Hardware & Security</h3>
-      <div class="badge-grid">
-        <span class="badge"><img src="https://img.shields.io/badge/Flipper%20Zero-FF8C00?style=flat-square&logo=flipperzero&logoColor=white" alt="Flipper Zero">Flipper Zero</span>
-        <span class="badge"><img src="https://img.shields.io/badge/Obsidian-7C3AED?style=flat-square&logo=obsidian&logoColor=white" alt="Obsidian">Obsidian</span>
-      </div>
-    </section>
-
-    <!-- ONGOING PROJECTS -->
-    <section class="section">
-      <h2>?? Projects — Ongoing <span class="status-badge status-active">Active</span></h2>
-      <table class="project-table">
-        <thead><tr><th>Project</th><th>Description</th><th>Status</th><th>Tech</th></tr></thead>
+      <header class="section-header">
+        <h2 class="section-title">ACTIVE PROJECTS</h2>
+        <span class="section-subtitle">Production · Maintained · Local-first</span>
+      </header>
+      <table class="table">
+        <thead>
+          <tr><th>PROJECT</th><th>DESCRIPTION</th><th>STATUS</th><th>STACK</th></tr>
+        </thead>
         <tbody>
-          <tr><td><a href="https://github.com/earnerbaymalay/aether">aether</a></td><td>Offline AI workstation. Runs 4 specialised models on-device via llama.cpp</td><td><span class="status-badge status-active">Active</span></td><td>llama.cpp, Rust, Python, Tauri</td></tr>
-          <tr><td><a href="https://github.com/earnerbaymalay/aether-droid">aether-droid</a></td><td>Fully offline Android AI workstation</td><td><span class="status-badge status-active">Active</span></td><td>Termux, Shell, llama.cpp</td></tr>
-          <tr><td><a href="https://github.com/earnerbaymalay/aether-tauri">aether-tauri</a></td><td>Tauri Desktop Edition (macOS/Windows/Linux)</td><td><span class="status-badge status-active">Active</span></td><td>Rust, Vite, React, Python</td></tr>
-          <tr><td><a href="https://github.com/earnerbaymalay/palexus-brain">palexus-brain</a></td><td>Canonical AI brain for PalexusOS. One Brain, all models; local-first</td><td><span class="status-badge status-active">Active</span></td><td>Rust, Python</td></tr>
-          <tr><td><a href="https://github.com/earnerbaymalay/cyph3rchat">cyph3rchat</a></td><td>Private E2E encrypted messaging. No phone numbers, no accounts</td><td><span class="status-badge status-active">Active</span></td><td>WebCrypto, PWA, Rust</td></tr>
+          <tr>
+            <td><a href="https://github.com/earnerbaymalay/aether"><span class="code">aether</span></a></td>
+            <td>Offline AI workstation. 4 specialised models on-device via llama.cpp</td>
+            <td><span class="status active">ACTIVE</span></td>
+            <td>llama.cpp · Rust · Python · Tauri</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/earnerbaymalay/aether-droid"><span class="code">aether-droid</span></a></td>
+            <td>Fully offline Android AI workstation</td>
+            <td><span class="status active">ACTIVE</span></td>
+            <td>Termux · Shell · llama.cpp</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/earnerbaymalay/aether-tauri"><span class="code">aether-tauri</span></a></td>
+            <td>Tauri Desktop Edition (macOS/Windows/Linux)</td>
+            <td><span class="status active">ACTIVE</span></td>
+            <td>Rust · Vite · React · Python</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/earnerbaymalay/palexus-brain"><span class="code">palexus-brain</span></a></td>
+            <td>Canonical AI brain for PalexusOS. One Brain, all models; local-first</td>
+            <td><span class="status active">ACTIVE</span></td>
+            <td>Rust · Python</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/earnerbaymalay/cyph3rchat"><span class="code">cyph3rchat</span></a></td>
+            <td>Private E2E encrypted messaging. No phone numbers, no accounts</td>
+            <td><span class="status active">ACTIVE</span></td>
+            <td>WebCrypto · PWA · Rust</td>
+          </tr>
         </tbody>
       </table>
     </section>
+
+    <div class="divider"></div>
 
     <!-- PLANNED PROJECTS -->
     <section class="section">
-      <h2>?? Projects — Planned <span class="status-badge status-planned">Planned</span></h2>
-      <table class="project-table">
-        <thead><tr><th>Project</th><th>Description</th><th>Target Stack</th></tr></thead>
+      <header class="section-header">
+        <h2 class="section-title">PLANNED PROJECTS</h2>
+        <span class="section-subtitle">In design · Next up</span>
+      </header>
+      <table class="table">
+        <thead>
+          <tr><th>PROJECT</th><th>DESCRIPTION</th><th>STATUS</th><th>TARGET STACK</th></tr>
+        </thead>
         <tbody>
-          <tr><td>Prompt Pack Marketplace</td><td>Local-first prompt templates marketplace with A/B eval</td><td>Tauri, Rust, Ollama, Stripe</td></tr>
-          <tr><td>HWCert (Diagnostic Suite)</td><td>Offline hardware diagnostics + LLM benchmark + signed certs</td><td>Rust, llama.cpp, Tauri, Termux</td></tr>
-          <tr><td>AI Pentesting Agent</td><td>Autonomous red-team agent, local-only, MITRE reports</td><td>Rust, Python, local LLM, Tauri</td></tr>
-          <tr><td>Prompt Registry & A/B Lab</td><td>Version prompts, A/B test against model fleet</td><td>SQLite, Rust, Ollama, GitHub Actions</td></tr>
-          <tr><td>Codebase ? Spec Generator</td><td>Local LLM generates OpenAPI, Mermaid, threat models</td><td>Local LLM, GitHub Actions, Tauri</td></tr>
+          <tr>
+            <td><span class="code">Prompt Pack Marketplace</span></td>
+            <td>Local-first prompt templates marketplace with A/B eval</td>
+            <td><span class="status planned">PLANNED</span></td>
+            <td>Tauri · Rust · Ollama · Stripe</td>
+          </tr>
+          <tr>
+            <td><span class="code">HWCert (Diagnostic Suite)</span></td>
+            <td>Offline hardware diagnostics + LLM benchmark + signed certs</td>
+            <td><span class="status planned">PLANNED</span></td>
+            <td>Rust · llama.cpp · Tauri · Termux</td>
+          </tr>
+          <tr>
+            <td><span class="code">AI Pentesting Agent</span></td>
+            <td>Autonomous red-team agent, local-only, MITRE reports</td>
+            <td><span class="status planned">PLANNED</span></td>
+            <td>Rust · Python · local LLM · Tauri</td>
+          </tr>
+          <tr>
+            <td><span class="code">Code Intelligence Suite</span></td>
+            <td>SpecGen · DepRadar · Knowledge?SRS · ChangelogAI (merged)</td>
+            <td><span class="status planned">PLANNED</span></td>
+            <td>Rust · Local LLM · Tauri · Obsidian</td>
+          </tr>
+          <tr>
+            <td><span class="code">Prompt Registry & A/B Lab</span></td>
+            <td>Version prompts, A/B test against model fleet</td>
+            <td><span class="status planned">PLANNED</span></td>
+            <td>SQLite · Rust · Ollama · GitHub Actions</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <!-- MODELS -->
+    <div class="divider"></div>
+
+    <!-- MODEL REGISTRY -->
     <section class="section">
-      <h2>?? Local Models Running</h2>
-      <table class="models-table">
-        <thead><tr><th>Model</th><th>Source</th><th>Size</th><th>Quantization</th></tr></thead>
+      <header class="section-header">
+        <h2 class="section-title">MODEL REGISTRY</h2>
+        <span class="section-subtitle">Local inference fleet · Quantized · On-device</span>
+      </header>
+      <table class="table">
+        <thead>
+          <tr><th>MODEL</th><th>SOURCE</th><th>SIZE</th><th>QUANT</th></tr>
+        </thead>
         <tbody>
-          <tr><td><code>aether-agent</code></td><td>custom</td><td>2.1 GB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>agent-3b</code></td><td>custom</td><td>2.1 GB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>emma</code></td><td>custom</td><td>5.0 GB</td><td>Q5_K_M</td></tr>
-          <tr><td><code>llama3.2-3b</code></td><td>meta</td><td>2.2 GB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>qwen2.5-coder:1.5b</code></td><td>alibaba</td><td>986 MB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>qwen2.5:3b</code></td><td>alibaba</td><td>1.9 GB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>dolphin-phi</code></td><td>cognitive</td><td>1.6 GB</td><td>Q4_K_M</td></tr>
-          <tr><td><code>qwen3-coder-next</code></td><td>cloud variant</td><td>—</td><td>—</td></tr>
+          <tr><td><span class="code">aether-agent</span></td><td>custom</td><td>2.1 GB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">agent-3b</span></td><td>custom</td><td>2.1 GB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">emma</span></td><td>custom</td><td>5.0 GB</td><td>Q5_K_M</td></tr>
+          <tr><td><span class="code">llama3.2-3b</span></td><td>meta</td><td>2.2 GB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">qwen2.5-coder:1.5b</span></td><td>alibaba</td><td>986 MB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">qwen2.5:3b</span></td><td>alibaba</td><td>1.9 GB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">dolphin-phi</span></td><td>cognitive</td><td>1.6 GB</td><td>Q4_K_M</td></tr>
+          <tr><td><span class="code">qwen3-coder-next</span></td><td>cloud variant</td><td>—</td><td>—</td></tr>
         </tbody>
       </table>
     </section>
+
+    <div class="divider"></div>
 
     <!-- HARDWARE FLEET -->
     <section class="section">
-      <h2>?? Hardware Fleet</h2>
-      <table class="hardware-table">
-        <thead><tr><th>Device</th><th>Specs</th><th>Role</th></tr></thead>
-        <tbody>
-          <tr><td><strong>main pc</strong></td><td>i7-8700 · MSI Z390-A PRO · GTX 1660 · Windows + WSL2</td><td>Primary dev / inference</td></tr>
-          <tr><td><strong>phone</strong></td><td>Pixel 8 Pro · stock Android · Termux AI workspace</td><td>Mobile inference / testing</td></tr>
-          <tr><td><strong>target</strong></td><td>Nokia XR20 · Snapdragon 480 · ~4.5 GB usable · =3B param</td><td>Edge deployment target</td></tr>
-          <tr><td><strong>macbook</strong></td><td>A1708 · macOS via OpenCore Legacy Patcher</td><td>Cross-platform testing</td></tr>
-          <tr><td><strong>lenovo</strong></td><td>IdeaCentre · secondary workstation</td><td>CI / background jobs</td></tr>
-          <tr><td><strong>rf research</strong></td><td>Flipper Zero · 433.92 MHz · Keeloq / rolling code</td><td>Hardware security research</td></tr>
-        </tbody>
-      </table>
+      <header class="section-header">
+        <h2 class="section-title">HARDWARE FLEET</h2>
+        <span class="section-subtitle">Compute targets · Deployment targets · Research</span>
+      </header>
+      <div class="grid grid-2">
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">MAIN PC</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">i7-8700 · MSI Z390-A PRO · GTX 1660</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Windows + WSL2 · Primary dev / inference</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">PHONE</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">Pixel 8 Pro · Stock Android</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Termux AI workspace · Mobile inference</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">TARGET DEVICE</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">Nokia XR20 · Snapdragon 480</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">~4.5 GB usable · =3B param models</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">MACBOOK</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">A1708 · macOS via OpenCore Legacy Patcher</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Cross-platform testing</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">SECONDARY</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">Lenovo IdeaCentre</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">CI / Background jobs</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600; color:var(--nocta-fg); margin-bottom:4px;">RF RESEARCH</div>
+          <div style="font-size:12px; color:var(--nocta-muted);">Flipper Zero · 433.92 MHz</div>
+          <div style="font-size:12px; color:var(--nocta-muted); margin-top:2px;">Keeloq / Rolling code protocols</div>
+        </div>
+      </div>
     </section>
+
+    <div class="divider"></div>
 
     <!-- CONNECT -->
-    <section class="section">
-      <h2>?? Connect</h2>
-      <ul style="list-style:none; display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center;">
-        <li><a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener">GitHub: @earnerbaymalay</a></li>
-        <li><a href="https://instagram.com/verswun" target="_blank" rel="noopener">Instagram: @verswun</a></li>
-      </ul>
+    <section class="section" style="text-align:center;">
+      <header class="section-header" style="justify-content:center;">
+        <h2 class="section-title">CONNECT</h2>
+      </header>
+      <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+        <a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:var(--nocta-muted); font-size:13px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://instagram.com/verswun" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:var(--nocta-muted); font-size:13px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.127-1.283-.14-1.69-.14-4.943 0-3.26.013-3.667.073-4.947.147-4.355 2.627-6.783 6.98-6.98 1.281-.058 1.689-.072 4.947-.072z"/></svg>
+          <span>Instagram</span>
+        </a>
+      </div>
     </section>
 
-    <!-- STYLING RESOURCES -->
-    <section class="section">
-      <h2>?? Profile Styling Resources & Methods</h2>
-      <table class="resource-table">
-        <thead><tr><th>Tool / Service</th><th>Purpose</th><th>Link</th></tr></thead>
-        <tbody>
-          <tr><td>GitAscii</td><td>Drag-and-drop visual editor ? dynamic SVG with ASCII art, stats, widgets</td><td><a href="https://gitascii.com/" target="_blank">gitascii.com</a></td></tr>
-          <tr><td>ASCII Profile README Generator</td><td>Browser-based photo ? ASCII art + full profile form</td><td><a href="https://ascii-profile-readme-generator.vercel.app" target="_blank">ascii-profile-readme-generator.vercel.app</a></td></tr>
-          <tr><td>GitHub Profile Styler</td><td>Anime/cyberpunk themes, 10 plugins, live preview</td><td><a href="https://github.com/allifiz/github-profile-styler" target="_blank">github.com/allifiz/github-profile-styler</a></td></tr>
-          <tr><td>DevQuest</td><td>33 card templates, 15 art styles, 19 themes, 40 ASCII arts, guestbook</td><td><a href="https://devquest-mu.vercel.app/" target="_blank">devquest-mu.vercel.app</a></td></tr>
-          <tr><td>README.forge</td><td>24 sections, 8 widget themes, self-hostable widgets, workflow generator</td><td><a href="https://github.com/Antech-greyhat/ReadmeForge" target="_blank">github.com/Antech-greyhat/ReadmeForge</a></td></tr>
-          <tr><td>Hacker ASCII README Generator</td><td>Neofetch-style terminal, image ? ASCII, theme presets</td><td><a href="https://github.com/holasoymalva/ascii-readme" target="_blank">github.com/holasoymalva/ascii-readme</a></td></tr>
-          <tr><td>RiceMe</td><td>Terminal-style SVG cards, 23 themes, CRT effects, typewriter</td><td><a href="https://github.com/Solenad/riceme-readme-generator" target="_blank">github.com/Solenad/riceme-readme-generator</a></td></tr>
-          <tr><td>UltimateStrength/ascii-readme</td><td>Neofetch-style, dual uptime, hobbies, ONNX background removal</td><td><a href="https://github.com/UltimateStrength/ascii-readme" target="_blank">github.com/UltimateStrength/ascii-readme</a></td></tr>
-          <tr><td>GitHub-Profile-Console</td><td>Animated ASCII portrait, dark/light SVG, hash-based assets</td><td><a href="https://github.com/wildanniam/GitHub-Profile-Console" target="_blank">github.com/wildanniam/GitHub-Profile-Console</a></td></tr>
-          <tr><td>Neofetch Profile</td><td>Simple URL embed, auto dark/light, customizable JSON</td><td><a href="https://github.com/jeantimex/neofetch-profile" target="_blank">github.com/jeantimex/neofetch-profile</a></td></tr>
-          <tr><td>ASCII Profile Card (Kali)</td><td>Avatar ? ASCII, typing animation, live stats, GitHub Action</td><td><a href="https://github.com/pangeran-droid/ascii-profile-card" target="_blank">github.com/pangeran-droid/ascii-profile-card</a></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- LICENSE -->
-    <section class="section">
-      <h2>?? License</h2>
-      <p>MIT © <a href="https://github.com/earnerbaymalay">earnzy</a></p>
-    </section>
+    <div class="divider"></div>
 
     <!-- FOOTER -->
     <footer class="footer">
-      <p>Built with design tokens from <a href="https://github.com/astryxdesign/astryx/tree/main/packages/themes/gothic">@astryxdesign/theme-gothic</a> · Typography: Didact Gothic (display) / Noto Sans Gothic (body) · Dark mode via CSS custom properties</p>
-      <p><a href="https://github.com/earnerbaymalay/earnerbaymalay" target="_blank">View source</a> · <a href="https://earnerbaymalay.github.io/earnerbaymalay/" target="_blank">GitHub Pages</a></p>
+      <p>Built with Nocta design language · Typography: Space Grotesk / JetBrains Mono · Dark mode native</p>
+      <p><a href="https://github.com/earnerbaymalay/earnerbaymalay">Source</a> · <a href="https://earnerbaymalay.github.io/earnerbaymalay/">GitHub Pages</a></p>
     </footer>
   </div>
 </body>

@@ -1,18 +1,18 @@
-# ?? hi, i'm earnzy
+# earnerbaymalay
 
-> **IT repair technician by trade, indie developer by obsession.**  
-> Everything I ship is **free, open source, and works offline.**
+> **IT repair technician by trade. Indie developer by obsession.**  
+> Everything ships free, open source, and works offline.
 
 ---
 
-## ?? ASCII Portrait
+## ?? ASCII PORTRAIT
 
 <p align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=58a6ff&icon_color=58a6ff&text_color=d4d4d8&custom_title=earnerbaymalay%20GitHub%20Stats" alt="GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&icon_color=e8b44c&text_color=f5f5f5&custom_title=SYSTEM%20STATS" alt="GitHub Stats" />
 </p>
 
 <p align="center">
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=58a6ff&currStreakLabel=58a6ff&sideLabels=d4d4d8" alt="GitHub Streak" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&fire=e8b44c&currStreakLabel=e8b44c&sideLabels=f5f5f5" alt="GitHub Streak" />
 </p>
 
 <p align="center">
@@ -20,26 +20,26 @@
 </p>
 
 <p align="center">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=58a6ff&text_color=d4d4d8" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e8b44c&text_color=f5f5f5" alt="Top Languages" />
 </p>
 
 <p align="center">
-Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=58a6ff&style=for-the-badge" alt="Profile Views" />
+Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=e8b44c&style=flat-square" alt="Profile Views" />
 </p>
 
 ---
 
-## ?? Location & Credentials
+## ?? SYSTEM SPECS
 
 | | |
 |---|---|
-| **Base** | 6K, Perth, Western Australia |
-| **Cert** | Cert III in IT · Hardware repair & resale |
-| **Focus** | Local AI · 11+ models running on-device |
+| **Base** | 6K, Perth, WA |
+| **Cert** | Cert III IT · Hardware repair & resale |
+| **Focus** | Local AI · 11+ models on-device |
 
 ---
 
-## ??? Tech Stack
+## ??? TECH STACK
 
 ### Languages
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -78,44 +78,34 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 
 ---
 
-## ?? GitHub Analytics
+## ?? ACTIVE PROJECTS
 
-<div align="center">
-  
-![Profile Views](https://komarev.com/ghpvc/?username=earnerbaymalay&color=58a6ff&style=for-the-badge)
-
-</div>
-
----
-
-## ?? Featured Projects
-
-### ?? **Ongoing** (actively maintained)
-
-| Project | Description | Status | Tech |
-|---------|-------------|--------|------|
-| [**aether**](https://github.com/earnerbaymalay/aether) | Offline AI workstation. Runs 4 specialised models on-device via llama.cpp | ?? Active | llama.cpp, Rust, Python, Tauri |
+| Project | Description | Status | Stack |
+|---------|-------------|--------|-------|
+| [**aether**](https://github.com/earnerbaymalay/aether) | Offline AI workstation. 4 specialised models on-device via llama.cpp | ?? Active | llama.cpp, Rust, Python, Tauri |
 | [**aether-droid**](https://github.com/earnerbaymalay/aether-droid) | Fully offline Android AI workstation | ?? Active | Termux, Shell, llama.cpp |
 | [**aether-tauri**](https://github.com/earnerbaymalay/aether-tauri) | Tauri Desktop Edition (macOS/Windows/Linux) | ?? Active | Rust, Vite, React, Python |
 | [**palexus-brain**](https://github.com/earnerbaymalay/palexus-brain) | Canonical AI brain for PalexusOS. One Brain, all models; local-first | ?? Active | Rust, Python |
 | [**cyph3rchat**](https://github.com/earnerbaymalay/cyph3rchat) | Private E2E encrypted messaging. No phone numbers, no accounts | ?? Active | WebCrypto, PWA, Rust |
 
-### ?? **Planned / In Design**
+---
+
+## ?? PLANNED PROJECTS
 
 | Project | Description | Target Stack |
 |---------|-------------|--------------|
 | **Prompt Pack Marketplace** | Local-first prompt templates marketplace with A/B eval | Tauri, Rust, Ollama, Stripe |
 | **HWCert (Diagnostic Suite)** | Offline hardware diagnostics + LLM benchmark + signed certs | Rust, llama.cpp, Tauri, Termux |
 | **AI Pentesting Agent** | Autonomous red-team agent, local-only, MITRE reports | Rust, Python, local LLM, Tauri |
+| **Code Intelligence Suite** | SpecGen · DepRadar · Knowledge?SRS · ChangelogAI (merged) | Rust, Local LLM, Tauri, Obsidian |
 | **Prompt Registry & A/B Lab** | Version prompts, A/B test against model fleet | SQLite, Rust, Ollama, GitHub Actions |
-| **Codebase ? Spec Generator** | Local LLM generates OpenAPI, Mermaid, threat models | Local LLM, GitHub Actions, Tauri |
 
 ---
 
-## ?? Local Models Running
+## ?? MODEL REGISTRY
 
-| Model | Source | Size | Quantization |
-|-------|--------|------|--------------|
+| Model | Source | Size | Quant |
+|-------|--------|------|-------|
 | `aether-agent` | custom | 2.1 GB | Q4_K_M |
 | `agent-3b` | custom | 2.1 GB | Q4_K_M |
 | `emma` | custom | 5.0 GB | Q5_K_M |
@@ -127,7 +117,7 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 
 ---
 
-## ?? Hardware Fleet
+## ?? HARDWARE FLEET
 
 | Device | Specs | Role |
 |--------|-------|------|
@@ -140,36 +130,15 @@ Profile views: <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&colo
 
 ---
 
-## ?? Connect
+## ?? CONNECT
 
 - **GitHub**: [@earnerbaymalay](https://github.com/earnerbaymalay)
 - **Instagram**: [@verswun](https://instagram.com/verswun)
 
 ---
 
-## ?? Profile Styling Resources & Methods
+## ?? FULL PROFILE SITE
 
-| Tool / Service | Purpose | Link |
-|----------------|---------|------|
-| **GitAscii** | Drag-and-drop visual editor ? dynamic SVG with ASCII art, stats, widgets | <https://gitascii.com/> |
-| **ASCII Profile README Generator** | Browser-based photo ? ASCII art + full profile form | <https://ascii-profile-readme-generator.vercel.app> |
-| **GitHub Profile Styler** | Anime/cyberpunk themes, 10 plugins, live preview | <https://github.com/allifiz/github-profile-styler> |
-| **DevQuest** | 33 card templates, 15 art styles, 19 themes, 40 ASCII arts, guestbook | <https://devquest-mu.vercel.app/> |
-| **README.forge** | 24 sections, 8 widget themes, self-hostable widgets, workflow generator | <https://github.com/Antech-greyhat/ReadmeForge> |
-| **Hacker ASCII README Generator** | Neofetch-style terminal, image ? ASCII, theme presets | <https://github.com/holasoymalva/ascii-readme> |
-| **RiceMe** | Terminal-style SVG cards, 23 themes, CRT effects, typewriter | <https://github.com/Solenad/riceme-readme-generator> |
-| **UltimateStrength/ascii-readme** | Neofetch-style, dual uptime, hobbies, ONNX background removal | <https://github.com/UltimateStrength/ascii-readme> |
-| **GitHub-Profile-Console** | Animated ASCII portrait, dark/light SVG, hash-based assets | <https://github.com/wildanniam/GitHub-Profile-Console> |
-| **Neofetch Profile** | Simple URL embed, auto dark/light, customizable JSON | <https://github.com/jeantimex/neofetch-profile> |
-| **ASCII Profile Card (Kali)** | Avatar ? ASCII, typing animation, live stats, GitHub Action | <https://github.com/pangeran-droid/ascii-profile-card> |
+**GitHub Pages (Nocta theme):** https://earnerbaymalay.github.io/earnerbaymalay/
 
-### Key Styling Patterns Used Here
-- **Dynamic SVG widgets** via `github-readme-stats`, `github-readme-streak-stats`, `github-profile-trophy`
-- **Theme consistency**: `tokyonight` across all widgets
-- **Transparent backgrounds** (`bg_color=00000000`) for seamless GitHub dark/light integration
-- **ASCII art**: Generated via client-side tools (photo never leaves browser)
-- **Self-hosting option**: All stat services can be self-hosted to avoid rate limits
-
----
-
-*Built with design tokens from [@astryxdesign/theme-gothic](https://github.com/astryxdesign/astryx/tree/main/packages/themes/gothic) · Typography: Didact Gothic (display) / Noto Sans Gothic (body) · Dark mode via CSS custom properties*
+*Built with Nocta design language · Typography: Space Grotesk / JetBrains Mono · Dark mode native*
