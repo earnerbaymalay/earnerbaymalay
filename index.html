@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="earnerbaymalay — Local-First AI Engineer. Cert III IT · Hardware Repair · Perth, WA">
+  <meta name="theme-color" content="#000000">
+  <title>earnerbaymalay — Local-First AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #000000;
+      --void-elevated: #0a0a0a;
+      --void-card: #111111;
+      --void-border: #1a1a1a;
+      --fg: #fafafa;
+      --fg-muted: #a3a3a3;
+      --fg-subtle: #525252;
+      --accent: #d4a843;
+      --accent-glow: rgba(212, 168, 67, 0.15);
+      --accent-strong: #e8c56d;
+      --radius: 0;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    @media (prefers-color-scheme: light) {
+      :root {
+        --void: #ffffff;
+        --void-elevated: #f5f5f5;
+        --void-card: #ffffff;
+        --void-border: #e5e5e5;
+        --fg: #171717;
+        --fg-muted: #525252;
+        --fg-subtle: #a3a3a3;
+        --accent: #b8860b;
+        --accent-glow: rgba(184, 134, 11, 0.15);
+        --accent-strong: #daa520;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-sans);
+      background: var(--void);
+      color: var(--fg);
+      line-height: 1.6;
+      min-height: 100vh;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute; top: -100%; left: 24px;
+      background: var(--accent); color: var(--void);
+      padding: 12px 24px; font-weight: 600; z-index: 1000;
+      text-decoration: none; border-radius: 0;
+    }
+    .skip-link:focus { top: 24px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--void-border);
+      padding: 16px 0;
+    }
+    @media (prefers-color-scheme: light) {
+      header { background: rgba(255, 255, 255, 0.95); }
+    }
+
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    
+    .logo {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-decoration: none;
+    }
+
+    nav { display: flex; gap: 4px; }
+    nav a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--fg-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid transparent;
+      transition: all var(--transition);
+    }
+    nav a:hover, nav a:focus {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+      outline: none;
+    }
+    nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--void-border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .hero-text h1 {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-text .subtitle {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--fg-muted);
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .hero-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--fg-muted);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--void-border);
+      background: var(--void-card);
+      transition: all var(--transition);
+    }
+    .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+    /* ASCII Portrait */
+    .portrait {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.3;
+      color: var(--fg-subtle);
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      padding: 24px;
+      overflow-x: auto;
+      white-space: pre;
+      user-select: none;
+      position: relative;
+    }
+    .portrait::before {
+      content: "ASCII PORTRAIT — generate at gitascii.com";
+      position: absolute; top: 8px; right: 12px;
+      font-size: 9px; color: var(--fg-subtle); opacity: 0.6;
+    }
+
+    /* Stats Bar */
+    .stats-bar { display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--void-border); }
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat-value { font-family: var(--font-sans); font-weight: 700; font-size: 28px; color: var(--fg); }
+    .stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Section */
+    section { padding: 60px 0; border-bottom: 1px solid var(--void-border); }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+    .section-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); }
+
+    /* Grid */
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) { .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Card */
+    .card {
+      background: var(--void-card);
+      border: 1px solid var(--void-border);
+      padding: 24px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,168,67,0.3), transparent);
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .card:hover { border-color: rgba(212,168,67,0.3); transform: translateY(-2px); box-shadow: 0 0 40px rgba(212,168,67,0.08); }
+    .card:hover::before { opacity: 1; }
+
+    /* Badges */
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border: 1px solid var(--void-border);
+      color: var(--fg-muted);
+      background: var(--void-card);
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .badge:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .badge.primary { border-color: var(--accent); color: var(--void); background: var(--accent); }
+    .badge.primary:hover { background: var(--accent-strong); }
+    .badge.status { text-transform: uppercase; letter-spacing: 0.03em; }
+    .badge.status.active { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,0.1); }
+    .badge.status.planned { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .badge.status.maintenance { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.1); }
+    .badge.status.abandoned { border-color: #dc2626; color: #dc2626; background: rgba(220,38,38,0.1); }
+
+    /* Project Table */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 12px; }
+    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--void-border); }
+    th { font-family: var(--font-sans); font-weight: 600; font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; background: var(--void-elevated); }
+    tr:hover td { background: var(--void-elevated); }
+    td:first-child { font-weight: 500; color: var(--fg); }
+    .project-link { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .project-link:hover { text-decoration: underline; }
+
+    /* Models Table */
+    .model-row td { font-family: var(--font-mono); font-size: 11px; }
+    .model-name { font-weight: 500; color: var(--fg); }
+    .quant-badge {
+      font-size: 9px; padding: 2px 6px; border-radius: 0;
+      background: var(--void-elevated); border: 1px solid var(--void-border);
+      color: var(--fg-muted);
+    }
+
+    /* Hardware Cards */
+    .hw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .hw-card { background: var(--void-card); border: 1px solid var(--void-border); padding: 20px; }
+    .hw-name { font-family: var(--font-sans); font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+    .hw-specs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .hw-spec { font-family: var(--font-mono); font-size: 11px; padding: 4px 8px; background: var(--void-elevated); border: 1px solid var(--void-border); color: var(--fg-muted); }
+
+    /* Widgets */
+    .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .widget { background: var(--void-card); border: 1px solid var(--void-border); padding: 20px; }
+    .widget-title { font-family: var(--font-sans); font-weight: 600; font-size: 14px; margin-bottom: 12px; }
+    .widget img { max-width: 100%; height: auto; border: 1px solid var(--void-border); }
+
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; color: var(--fg-subtle); font-family: var(--font-mono); font-size: 12px; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Utility */
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <header role="banner">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="earnerbaymalay — Home">earnerbaymalay</a>
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#models">Models</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <h1 id="hero-title">Local-First AI Engineer</h1>
+            <p class="subtitle">Building offline-capable AI tooling. Cert III IT · Hardware Repair · Perth, WA</p>
+            <div class="hero-links">
+              <a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://instagram.com/v.erswun" target="_blank" rel="noopener">Instagram</a>
+              <a href="mailto:earnerbaymalay@proton.me">Email</a>
+              <a href="https://earnerbaymalay.github.io/earnerbaymalay/" target="_blank" rel="noopener">Blog</a>
+            </div>
+            <div class="stats-bar" role="list" aria-label="GitHub statistics">
+              <div class="stat" role="listitem">
+                <span class="stat-value" id="stat-repos">—</span>
+                <span class="stat-label">Repos</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat-value" id="stat-stars">—</span>
+                <span class="stat-label">Stars</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat-value" id="stat-followers">—</span>
+                <span class="stat-label">Followers</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat-value" id="stat-commits">—</span>
+                <span class="stat-label">Commits (1yr)</span>
+              </div>
+            </div>
+          </div>
+          <aside class="portrait" aria-label="ASCII portrait placeholder">
+████████████████████████████████████████
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+█░  ████████  ████████  ████████  ███  ░█
+█░  █░░░░░░█  █░░░░░░█  █░░░░░░█  █░█  ░█
+█░  ████████  ████████  ████████  █░█  ░█
+█░  █░░░░░░   █░░░░░░   █░░░░░░   █░█  ░█
+█░  █░░░░░░   █░░░░░░   █░░░░░░   █░█  ░█
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+████████████████████████████████████████
+[ Generate real ASCII at gitascii.com ]
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flagship Project -->
+    <section id="flagship" aria-labelledby="flagship-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="flagship-title" class="section-title">FLAGSHIP</h2>
+          <span class="section-subtitle">Primary focus — production-grade local AI</span>
+        </header>
+        <article class="card" style="max-width: 800px;">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <span class="badge primary">SYNAPSE</span>
+            <span class="badge status active">ACTIVE</span>
+            <span class="badge">Rust</span>
+            <span class="badge">Tauri 2</span>
+            <span class="badge">Ollama</span>
+            <span class="badge">TypeScript</span>
+          </div>
+          <h3 style="font-family: var(--font-sans); font-weight: 700; font-size: 22px; margin-bottom: 12px;">Synapse (llm-neuro-surgeon)</h3>
+          <p style="color: var(--fg-muted); line-height: 1.7; margin-bottom: 16px;">
+            Local-first LLM inference orchestration engine. Manages model fleet across devices, 
+            handles quantization pipelines, provides unified API for inference with hardware-aware 
+            routing. Built for the <strong>PromptPack Marketplace</strong> eval runner and the 
+            <strong>Local-First Code Intelligence Suite</strong>.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <a href="https://github.com/earnerbaymalay/llm-neuro-surgeon" target="_blank" rel="noopener" class="project-link">View Repository →</a>
+            <a href="https://github.com/earnerbaymalay/promptpack-marketplace" target="_blank" rel="noopener" class="project-link">PromptPack Marketplace →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="projects-title" class="section-title">PROJECTS</h2>
+          <span class="section-subtitle">10-project execution plan — local-first, zero cloud dependencies</span>
+        </header>
+
+        <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin-bottom: 16px; color: var(--fg-muted);">ACTIVE / IN PROGRESS</h3>
+        <div class="table-wrap">
+          <table aria-label="Active projects">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Description</th>
+                <th>Stack</th>
+                <th>Status</th>
+                <th>Repo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PromptPack Marketplace</strong></td>
+                <td>Local-first prompt marketplace with Ed25519-signed packs, Ollama eval runner, Tauri UI</td>
+                <td>Rust, Tauri 2, TypeScript, Ollama</td>
+                <td><span class="badge status active">In Progress</span></td>
+                <td><a href="https://github.com/earnerbaymalay/promptpack-marketplace" class="project-link" target="_blank" rel="noopener">promptpack-marketplace</a></td>
+              </tr>
+              <tr>
+                <td><strong>Local-First Code Intelligence Suite</strong></td>
+                <td>Merged: SpecGen + DepRadar + Knowledge→SRS + ChangelogAI — multi-pass LLM analysis, dependency risk radar, terminal replay</td>
+                <td>Rust, Tauri, Ollama, SQLite, GitHub Actions</td>
+                <td><span class="badge status planned">Planned</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>IT Tech's Offline Diagnostic Suite (HWCert)</strong></td>
+                <td>Hardware inventory, stress testing, LLM bench, firmware check, cert generation — CLI, ISO, Termux, Tauri</td>
+                <td>Rust, Tauri, Termux, ISO</td>
+                <td><span class="badge status planned">Planned</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Local-First AI Pentesting Agent</strong></td>
+                <td>Network scan, API fuzzer, CVE exploit, lateral movement sim, MITRE ATT&CK reports</td>
+                <td>Rust, Tauri, OSV, llama.cpp</td>
+                <td><span class="badge status planned">Planned</span></td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin: 32px 0 16px; color: var(--fg-muted);">PLANNED (Phase 3–5)</h3>
+        <div class="table-wrap">
+          <table aria-label="Planned projects">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Description</th>
+                <th>Stack</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Prompt Registry & A/B Lab</strong></td>
+                <td>SQLite prompt versioning, automated A/B testing against model fleet, promotion pipeline</td>
+                <td>Rust, SQLite, Ollama</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>Anki/FSRS Exporter</strong></td>
+                <td>Obsidian vault watcher, LLM Q&A extraction, FSRS algorithm, mobile sync</td>
+                <td>Rust, Tauri, Termux, Syncthing</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>Release Notes Composer</strong></td>
+                <td>Post-merge Git hook, LLM changelog generation, multi-audience templates</td>
+                <td>Rust, Git hooks, GitHub Actions</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>Terminal Session Replay</strong></td>
+                <td>PTY capture, SQLite + vector embeddings, natural language query, timeline UI</td>
+                <td>Rust, Tauri, Ollama embeddings</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>MLOps Dashboard</strong></td>
+                <td>Model versioning, edge promotion (Ollama→Termux/ARM), Git audit trail</td>
+                <td>Rust, Tauri, Ollama Registry</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hardware Telemetry Bridge</strong></td>
+                <td>CPU/GPU/thermal/RF daemon → local RAG → LLM context injection</td>
+                <td>Rust, Tauri, palexusOS hooks</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>CAPTCHA/PoH Generator</strong></td>
+                <td>Synthetic datasets (image/audio/gesture/behavioral), local LLM judge</td>
+                <td>Rust, Tauri, Ollama</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong>Code Review Agent</strong></td>
+                <td>1.5B–3B fine-tuned model, Git hook / self-hosted action, reviews against your patterns</td>
+                <td>Rust, palexus-brain, fine-tuning</td>
+                <td><span class="badge status planned">Planned</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin: 32px 0 16px; color: var(--fg-muted);">ABANDONED</h3>
+        <div class="badges" style="margin-bottom: 16px;">
+          <span class="badge status abandoned">aether</span>
+          <span class="badge status abandoned">aether-droid</span>
+          <span class="badge status abandoned">aether-tauri</span>
+          <span class="badge status abandoned">sideload</span>
+          <span class="badge status abandoned">CYBERSEC-AI-TAFE-PROJECTS</span>
+        </div>
+        <p style="color: var(--fg-muted); font-size: 13px; max-width: 700px;">
+          These repositories were made private and archived. No RF/Flipper work possible — 
+          hardware limited to Surface Pro 9 (desktop build in progress).
+        </p>
+      </div>
+    </section>
+
+    <!-- Models -->
+    <section id="models" aria-labelledby="models-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="models-title" class="section-title">MODEL FLEET</h2>
+          <span class="section-subtitle">Local models managed via Ollama — quantized for consumer hardware</span>
+        </header>
+        <div class="table-wrap">
+          <table aria-label="Model fleet with quantization">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Base</th>
+                <th>Quantization</th>
+                <th>Size</th>
+                <th>Use Case</th>
+                <th>Device</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="model-row">
+                <td class="model-name">qwen2.5-coder:1.5b</td>
+                <td>Qwen2.5-Coder</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>1.1 GB</td>
+                <td>Code generation, eval judge</td>
+                <td>Surface Pro 9</td>
+              </tr>
+              <tr class="model-row">
+                <td class="model-name">qwen2.5:3b</td>
+                <td>Qwen2.5</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>2.0 GB</td>
+                <td>General reasoning, prompt eval</td>
+                <td>Surface Pro 9</td>
+              </tr>
+              <tr class="model-row">
+                <td class="model-name">llama3.2-3b</td>
+                <td>Llama 3.2</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>2.0 GB</td>
+                <td>Instruction following, analysis</td>
+                <td>Surface Pro 9</td>
+              </tr>
+              <tr class="model-row">
+                <td class="model-name">dolphin-phi</td>
+                <td>Phi-3.5</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>1.8 GB</td>
+                <td>Uncensored, security research</td>
+                <td>Surface Pro 9</td>
+              </tr>
+              <tr class="model-row">
+                <td class="model-name">qwen2.5-coder:7b</td>
+                <td>Qwen2.5-Coder</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>4.4 GB</td>
+                <td>Heavy code tasks, spec generation</td>
+                <td>Desktop (planned)</td>
+              </tr>
+              <tr class="model-row">
+                <td class="model-name">llama3.1-8b</td>
+                <td>Llama 3.1</td>
+                <td><span class="quant-badge">Q4_K_M</span></td>
+                <td>4.7 GB</td>
+                <td>Long context, RAG, pentest reports</td>
+                <td>Desktop (planned)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color: var(--fg-muted); font-size: 13px; margin-top: 16px; max-width: 700px;">
+          All models run locally via Ollama. Quantization: Q4_K_M (4-bit K-quant medium) balances 
+          quality/speed. Desktop build will enable 7B–8B models and parallel inference.
+        </p>
+      </div>
+    </section>
+
+    <!-- Hardware -->
+    <section id="hardware" aria-labelledby="hardware-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="hardware-title" class="section-title">HARDWARE FLEET</h2>
+          <span class="section-subtitle">Current + planned devices for local AI workloads</span>
+        </header>
+        <div class="hw-grid">
+          <article class="hw-card">
+            <div class="hw-name">Surface Pro 9 (Primary)</div>
+            <div style="color: var(--fg-muted); font-size: 13px; margin-bottom: 8px;">Daily driver · Development · Inference</div>
+            <div class="hw-specs">
+              <span class="hw-spec">Intel i7-1265U (12C/16T)</span>
+              <span class="hw-spec">32 GB LPDDR5</span>
+              <span class="hw-spec">1 TB NVMe</span>
+              <span class="hw-spec">Iris Xe (96 EU)</span>
+              <span class="hw-spec">Windows 11 + WSL2</span>
+            </div>
+          </article>
+          <article class="hw-card">
+            <div class="hw-name">Custom Desktop (In Progress)</div>
+            <div style="color: var(--fg-muted); font-size: 13px; margin-bottom: 8px;">Training · Heavy inference · Multi-model</div>
+            <div class="hw-specs">
+              <span class="hw-spec">AMD Ryzen 9 7950X (16C/32T)</span>
+              <span class="hw-spec">128 GB DDR5-6000</span>
+              <span class="hw-spec">4 TB NVMe + 8 TB HDD</span>
+              <span class="hw-spec">RTX 4090 (24 GB)</span>
+              <span class="hw-spec">Linux (Arch/NixOS)</span>
+            </div>
+          </article>
+          <article class="hw-card">
+            <div class="hw-name">Android Device (Termux)</div>
+            <div style="color: var(--fg-muted); font-size: 13px; margin-bottom: 8px;">Edge deployment · Mobile testing</div>
+            <div class="hw-specs">
+              <span class="hw-spec">Snapdragon 8 Gen 3</span>
+              <span class="hw-spec">16 GB LPDDR5X</span>
+              <span class="hw-spec">Termux + proot-distro</span>
+              <span class="hw-spec">Ollama ARM64</span>
+              <span class="hw-spec">Syncthing sync</span>
+            </div>
+          </article>
+        </div>
+        <p style="color: var(--fg-muted); font-size: 13px; margin-top: 16px; max-width: 700px;">
+          No Flipper Zero, no RF hardware. Surface Pro 9 handles all current workloads via WSL2. 
+          Desktop build targets 7B+ models and parallel eval runs. Termux device for edge promotion testing.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stack Badges -->
+    <section id="stack" aria-labelledby="stack-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="stack-title" class="section-title">TECH STACK</h2>
+          <span class="section-subtitle">Core technologies — 30+ tools across the local-first ecosystem</span>
+        </header>
+        <div class="badges" role="list" aria-label="Technology stack">
+          <!-- Languages -->
+          <span class="badge" role="listitem">Rust</span>
+          <span class="badge" role="listitem">TypeScript</span>
+          <span class="badge" role="listitem">Python</span>
+          <span class="badge" role="listitem">PowerShell</span>
+          <span class="badge" role="listitem">Bash</span>
+          <!-- Frameworks -->
+          <span class="badge" role="listitem">Tauri 2</span>
+          <span class="badge" role="listitem">Vite</span>
+          <span class="badge" role="listitem">React</span>
+          <span class="badge" role="listitem">Next.js</span>
+          <span class="badge" role="listitem">Electron</span>
+          <!-- AI/ML -->
+          <span class="badge" role="listitem">Ollama</span>
+          <span class="badge" role="listitem">llama.cpp</span>
+          <span class="badge" role="listitem">candle</span>
+          <span class="badge" role="listitem">ONNX Runtime</span>
+          <span class="badge" role="listitem">tokenizers</span>
+          <!-- Infrastructure -->
+          <span class="badge" role="listitem">GitHub Actions</span>
+          <span class="badge" role="listitem">Docker</span>
+          <span class="badge" role="listitem">Nix</span>
+          <span class="badge" role="listitem">WSL2</span>
+          <span class="badge" role="listitem">Termux</span>
+          <!-- Databases -->
+          <span class="badge" role="listitem">SQLite</span>
+          <span class="badge" role="listitem">libsql</span>
+          <span class="badge" role="listitem">PostgreSQL</span>
+          <span class="badge" role="listitem">Redis</span>
+          <!-- Tools -->
+          <span class="badge" role="listitem">Git</span>
+          <span class="badge" role="listitem">Obsidian</span>
+          <span class="badge" role="listitem">Neovim</span>
+          <span class="badge" role="listitem">VS Code</span>
+          <span class="badge" role="listitem">GH CLI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Widgets -->
+    <section id="widgets" aria-labelledby="widgets-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="widgets-title" class="section-title">GITHUB METRICS</h2>
+          <span class="section-subtitle">Live stats via github-readme-stats (tokyonight theme, transparent)</span>
+        </header>
+        <div class="widgets-grid">
+          <div class="widget">
+            <div class="widget-title">Overview</div>
+            <img src="https://github-readme-stats.vercel.app/api?username=earnerbaymalay&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&text_color=fafafa&icon_color=d4a843&border_radius=0" alt="GitHub stats" loading="lazy">
+          </div>
+          <div class="widget">
+            <div class="widget-title">Top Languages</div>
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=earnerbaymalay&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=d4a843&text_color=fafafa&border_radius=0" alt="Top languages" loading="lazy">
+          </div>
+          <div class="widget">
+            <div class="widget-title">Streak</div>
+            <img src="https://github-readme-streak-stats.herokuapp.com/?user=earnerbaymalay&theme=tokyonight&hide_border=true&background=00000000&stroke=d4a843&ring=d4a843&fire=d4a843&currStreakLabel=d4a843&sideNums=fafafa&sideLabels=fafafa&dates=fafafa&border_radius=0" alt="GitHub streak" loading="lazy">
+          </div>
+          <div class="widget">
+            <div class="widget-title">Trophies</div>
+            <img src="https://github-profile-trophy.vercel.app/?username=earnerbaymalay&theme=tokyonight&no-frame=true&no-bg=true&margin-w=8&margin-h=8" alt="GitHub trophies" loading="lazy">
+          </div>
+          <div class="widget">
+            <div class="widget-title">Profile Views</div>
+            <img src="https://komarev.com/ghpvc/?username=earnerbaymalay&color=d4a843&style=flat-square&label=Views" alt="Profile views" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="about-title" class="section-title">ABOUT</h2>
+        </header>
+        <div class="grid grid-2">
+          <article class="card">
+            <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin-bottom: 16px;">Background</h3>
+            <p style="color: var(--fg-muted); line-height: 1.7;">
+              Cert III in Information Technology · Hardware Repair specialist · Based in Perth, Western Australia.
+              Transitioned from hardware repair to local-first AI engineering. Focus on offline-capable tooling 
+              that respects user sovereignty — no cloud dependencies, no telemetry, no compromise.
+            </p>
+          </article>
+          <article class="card">
+            <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin-bottom: 16px;">Philosophy</h3>
+            <ul style="color: var(--fg-muted); line-height: 1.8; padding-left: 20px;">
+              <li><strong>Local-first always</strong> — Zero cloud dependencies</li>
+              <li><strong>Dogfood everything</strong> — Use each tool to build the next</li>
+              <li><strong>Reuse aggressively</strong> — Shared infra = compound leverage</li>
+              <li><strong>Document as you go</strong> — Obsidian vault = living docs</li>
+              <li><strong>No timeframes</strong> — Work until done, ship when ready</li>
+            </ul>
+          </article>
+        </div>
+        <div class="grid grid-2" style="margin-top: 16px;">
+          <article class="card">
+            <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin-bottom: 16px;">Current Focus</h3>
+            <p style="color: var(--fg-muted); line-height: 1.7;">
+              <strong>PromptPack Marketplace</strong> — Ed25519-signed prompt packs, local Ollama eval runner 
+              with TTFT/TPOT/cost/quality metrics, Tauri 2 desktop app, GitHub Pages registry index.
+            </p>
+          </article>
+          <article class="card">
+            <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 16px; margin-bottom: 16px;">Contact</h3>
+            <p style="color: var(--fg-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 13px;">
+              GitHub: <a href="https://github.com/earnerbaymalay" target="_blank" rel="noopener" style="color: var(--accent);">@earnerbaymalay</a><br>
+              Instagram: <a href="https://instagram.com/v.erswun" target="_blank" rel="noopener" style="color: var(--accent);">@v.erswun</a><br>
+              Email: <a href="mailto:earnerbaymalay@proton.me" style="color: var(--accent);">earnerbaymalay@proton.me</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>Built with <span style="color: var(--accent);">Nocta</span> aesthetic · Fonts: Geist / Geist Mono · 
+      Accent: <code style="color: var(--accent);">#d4a843</code> · Dark-only, always</p>
+      <p style="margin-top: 8px; font-size: 11px;">
+        Deployed via GitHub Pages from <a href="https://github.com/earnerbaymalay/earnerbaymalay" target="_blank" rel="noopener">earnerbaymalay/earnerbaymalay</a> · 
+        Auto-loads on profile via <code>README.md</code>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch live GitHub stats
+    async function fetchStats() {
+      try {
+        const [userRes, reposRes] = await Promise.all([
+          fetch('https://api.github.com/users/earnerbaymalay'),
+          fetch('https://api.github.com/users/earnerbaymalay/repos?per_page=100&sort=updated')
+        ]);
+        const user = await userRes.json();
+        const repos = await reposRes.json();
+        
+        document.getElementById('stat-repos').textContent = user.public_repos || '—';
+        document.getElementById('stat-followers').textContent = user.followers || '—';
+        
+        const totalStars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+        document.getElementById('stat-stars').textContent = totalStars || '—';
+        
+        // Commits in last year (approximate from pushed repos)
+        const oneYearAgo = new Date(Date.now() - 365*24*60*60*1000);
+        const activeRepos = repos.filter(r => new Date(r.pushed_at) > oneYearAgo).length;
+        document.getElementById('stat-commits').textContent = activeRepos + ' active';
+      } catch (e) {
+        console.warn('Failed to fetch live stats:', e);
+      }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', fetchStats);
+  </script>
+</body>
+</html>
