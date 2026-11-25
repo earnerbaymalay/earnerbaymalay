@@ -10,6 +10,25 @@
 
 ---
 
+<pre align="center" style="font-size: 9px; line-height: 1.25; background: #0a0a0a; border: 1px solid #1a1a1a; padding: 20px; color: #d4a843;">
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+█  ▄▄▄▄▄  ▄▄▄▄▄  ▄▄▄▄▄  ▄▄▄▄▄  ▄▄▄  █
+█  █   █  █   █  █   █  █   █  █ █  █
+█  █▄▄▄█  █▄▄▄█  █▄▄▄█  █▄▄▄█  █ █  █
+█  █   █  █   █  █   █  █   █  █ █  █
+█  █   █  █   █  █   █  █   █  █ █  █
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+█                                      █
+█  LOCAL-FIRST AI ENGINEER             █
+█  Cert III IT · Hardware Repair       █
+█  Perth, Western Australia            █
+█  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+</pre>
+
+---
+
 ## Local-First AI Engineer
 
 **Cert III IT · Hardware Repair · Perth, WA**
