@@ -11,7 +11,7 @@
 <br/>
 
 <a href="https://earnerbaymalay.github.io/earnerbaymalay/"><img src="https://img.shields.io/badge/FULL%20PROFILE%20SITE-d4a843?style=for-the-badge&logo=githubpages&logoColor=black" alt="Profile site" /></a>
-<a href="https://github.com/earnerbaymalay/llm-neuro-surgeon"><img src="https://img.shields.io/badge/FLAGSHIP-SYNAPSE-0a0a0a?style=for-the-badge&logo=rust&logoColor=d4a843&labelColor=0a0a0a&color=d4a843" alt="Flagship: Synapse" /></a>
+<a href="https://github.com/earnerbaymalay/palexusOS"><img src="https://img.shields.io/badge/FLAGSHIP-PALEXUSOS-0a0a0a?style=for-the-badge&logo=rust&logoColor=d4a843&labelColor=0a0a0a&color=d4a843" alt="Flagship: Synapse" /></a>
 <a href="https://instagram.com/v.erswun"><img src="https://img.shields.io/badge/INSTAGRAM-0a0a0a?style=for-the-badge&logo=instagram&logoColor=d4a843" alt="Instagram" /></a>
 
 <br/><br/>
@@ -31,7 +31,8 @@
 ```text
 base    ▸ Perth, WA
 cert    ▸ Certificate III in IT · hardware repair & resale
-focus   ▸ Local AI · 11+ models on-device
+next    ▸ Diploma of IT (Cyber Security & AI) · North Metropolitan TAFE (applying)
+focus   ▸ Local AI · AI-assisted security tooling · 11+ models on-device
 ethos   ▸ no accounts · no telemetry · no cloud required
 ```
 
@@ -82,21 +83,29 @@ ethos   ▸ no accounts · no telemetry · no cloud required
 
 | Project | What it does | Status | Stack |
 |---|---|---|---|
-| [**SYNAPSE / llm-neuro-surgeon**](https://github.com/earnerbaymalay/llm-neuro-surgeon) | Local-first config engine that keeps Claude Code, Cursor, Gemini, Windsurf, Zed and other AI coding tools in lockstep. Rust core, zero telemetry. | 🟡 **Flagship** | `Rust` `Local LLM` `Git` |
+| [**PalexusOS**](https://github.com/earnerbaymalay/palexusOS) | Local-first config engine that keeps Claude Code, Cursor, Gemini, Windsurf, Zed and other AI coding tools in lockstep from one canonical brain. Tauri + Rust core, zero telemetry. | 🟡 **Flagship** | `Rust` `Tauri` `React` `Git` |
 | [**palexus-brain**](https://github.com/earnerbaymalay/palexus-brain) | Canonical AI brain for PalexusOS. One brain, all models, local-first. | 🟢 Active | `Rust` `Python` |
+| [**promptpack-marketplace**](https://github.com/earnerbaymalay/promptpack-marketplace) | Local-first prompt template marketplace. | 🟢 Active | `Tauri` `Rust` |
 | [**meshtouch**](https://github.com/earnerbaymalay/meshtouch) | Encrypted messaging over a hybrid relay network. Reaches people even if they don't have the app. | 🟢 Active | `Rust` |
 | [**cyph3rchat**](https://github.com/earnerbaymalay/cyph3rchat) | Private end-to-end encrypted messaging. No phone numbers, no accounts. | 🟢 Active | `WebCrypto` `PWA` `Rust` |
 | [**nexus11-optimizer.py**](https://github.com/earnerbaymalay/nexus11-optimizer.py) | Modular Windows optimisation toolkit with separate Windows 10 and 11 parts. | 🟢 Active | `Python` `PowerShell` |
 
 <details>
-<summary><b>🗺️ Planned projects (10)</b></summary>
+<summary><b>📁 More public repos</b></summary>
+<br/>
+
+[`llm-skill-library`](https://github.com/earnerbaymalay/llm-skill-library) · [`my-claude-skills`](https://github.com/earnerbaymalay/my-claude-skills) · [`llm-quickfire-panel`](https://github.com/earnerbaymalay/llm-quickfire-panel) · [`sherlock-suite`](https://github.com/earnerbaymalay/sherlock-suite) · [`shadow-check`](https://github.com/earnerbaymalay/shadow-check) · [`omega-desktop`](https://github.com/earnerbaymalay/omega-desktop) · [`ambient-canvas`](https://github.com/earnerbaymalay/ambient-canvas) · [`lunchbox-notes`](https://github.com/earnerbaymalay/lunchbox-notes) · [`windows-shared-network-storage`](https://github.com/earnerbaymalay/windows-shared-network-storage) · [`aether`](https://github.com/earnerbaymalay/aether) · [`about`](https://github.com/earnerbaymalay/about)
+
+</details>
+
+<details>
+<summary><b>🗺️ Planned projects (9)</b></summary>
 <br/>
 
 | Project | Description | Target stack |
 |---|---|---|
-| **Prompt Pack Marketplace** | Local-first prompt template marketplace with A/B eval | Tauri, Rust, Ollama, Stripe |
 | **HWCert (Diagnostic Suite)** | Offline hardware diagnostics, LLM benchmark and signed certs | Rust, llama.cpp, Tauri, Termux |
-| **AI Pentesting Agent** | Autonomous red-team agent, local-only, MITRE reports | Rust, Python, local LLM, Tauri |
+| **AI Pentesting Agent** | Autonomous red-team agent, local-only, MITRE reports. Prototyping with Strix on local Ollama models | Rust, Python, Docker, local LLM, Tauri |
 | **Code Intelligence Suite** | SpecGen · DepRadar · Knowledge→SRS · ChangelogAI (merged) | Rust, Local LLM, Tauri, Obsidian |
 | **Prompt Registry & A/B Lab** | Version prompts, A/B test against the model fleet | SQLite, Rust, Ollama, GitHub Actions |
 | **Knowledge → Anki/FSRS Exporter** | Obsidian vault to FSRS cards via local LLM | Rust, Ollama, notify |
@@ -121,6 +130,8 @@ ethos   ▸ no accounts · no telemetry · no cloud required
 | `agent-3b` | custom | 2.1 GB | Q4_K_M |
 | `emma` | custom | 5.0 GB | Q5_K_M |
 | `llama3.2-3b` | meta | 2.2 GB | Q4_K_M |
+| `qwen2.5-coder-32k` | custom (7B, 32k context) | n/a | n/a |
+| `qwen2.5-coder-3b-32k` | custom (3B, 32k context) | n/a | n/a |
 | `qwen2.5-coder:1.5b` | alibaba | 986 MB | Q4_K_M |
 | `qwen2.5:3b` | alibaba | 1.9 GB | Q4_K_M |
 | `dolphin-phi` | cognitive | 1.6 GB | Q4_K_M |
@@ -134,10 +145,13 @@ ethos   ▸ no accounts · no telemetry · no cloud required
 
 | Device | Specs | Role |
 |---|---|---|
-| **Surface Pro 9** | i7-1255U · 16 GB LPDDR5 · Intel Iris Xe | Primary dev · inference · mobile |
-| **Desktop build** | In progress · target Ryzen 9 · 64 GB · RTX 4090 | Primary inference · training · CI |
-| **Nokia XR20** | Snapdragon 480 · ~4.5 GB usable · ≤3B params | Edge deployment target |
-| **MacBook** | A1708 · macOS via OpenCore Legacy Patcher | Cross-platform testing |
+| **HP EliteBook 830 G5** | Linux Mint Cinnamon · Tailscale + Proton VPN | Daily driver · KVM server |
+| **Surface Pro 9** | i7-1255U · 16 GB LPDDR5 · Intel Iris Xe | Dev · inference · mobile |
+| **Windows 11 dev box** | i5-10210U · ~24 GB RAM · Ollama + Docker | Local-model and Strix testing |
+| **Dell Latitude** | Linux · wifi pentest rig | Security lab |
+| **Nokia XR20** | Snapdragon 480 · ~4.5 GB usable · ≤3B params · hardened | Edge deployment target |
+| **MacBook A1708** | macOS via OpenCore Legacy Patcher | Cross-platform testing |
+| **Inference server** | Planned · i7-8700 | Primary inference |
 
 </details>
 
