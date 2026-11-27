@@ -40,7 +40,7 @@ Building offline-capable AI tooling. Zero cloud dependencies. No telemetry. No c
 [![GitHub](https://img.shields.io/badge/GitHub-earnerbaymalay-181717?style=flat-square&logo=github)](https://github.com/earnerbaymalay)
 [![Instagram](https://img.shields.io/badge/Instagram-%40v.erswun-E4405F?style=flat-square&logo=instagram)](https://instagram.com/v.erswun)
 [![Email](https://img.shields.io/badge/Email-proton.me-8B89CC?style=flat-square&logo=protonmail)](mailto:earnerbaymalay@proton.me)
-[![Blog](https://img.shields.io/badge/Blog-GitHub_Pages-000?style=flat-square&logo=githubpages)](https://earnerbaymalay.github.io/earnerbaymalay/)
+[![Blog](https://img.shields.io/badge/Blog-GitHub_Pages-000?style=flat-square&logo=githubpages)](https://earnerbaymalay.github.io/)
 
 </div>
 
@@ -65,7 +65,7 @@ Local-first LLM inference orchestration engine. Manages model fleet across devic
 | **IT Tech's Offline Diagnostic Suite (HWCert)** | Hardware inventory, stress testing, LLM bench, firmware check, cert generation | Rust, Tauri, Termux, ISO | ![Planned](https://img.shields.io/badge/Planned-d4a843?style=flat-square) |
 | **Local-First AI Pentesting Agent** | Network scan, API fuzzer, CVE exploit, lateral movement sim, MITRE ATT&CK reports | Rust, Tauri, OSV, llama.cpp | ![Planned](https://img.shields.io/badge/Planned-d4a843?style=flat-square) |
 
-[View all 10 projects →](https://earnerbaymalay.github.io/earnerbaymalay/#projects)
+[View all 10 projects →](https://earnerbaymalay.github.io/#projects)
 
 ---
 
