@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456.0 174.0" width="100%" role="img" aria-label="EARN">
+<title>EARN</title>
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3ff8a"/><stop offset=".45" stop-color="#c6f135"/><stop offset="1" stop-color="#7ea01c"/></linearGradient></defs>
+<rect width="100%" height="100%" rx="12" fill="#0a0a0a" stroke="#2a2d25"/>
+<g font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="20" fill="url(#g)" xml:space="preserve">
+<text x="24" y="44.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">███████╗ █████╗ ██████╗ ███╗   ██╗</text>
+<text x="24" y="65.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">██╔════╝██╔══██╗██╔══██╗████╗  ██║</text>
+<text x="24" y="86.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">█████╗  ███████║██████╔╝██╔██╗ ██║</text>
+<text x="24" y="107.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">██╔══╝  ██╔══██║██╔══██╗██║╚██╗██║</text>
+<text x="24" y="128.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">███████╗██║  ██║██║  ██║██║ ╚████║</text>
+<text x="24" y="149.50" textLength="408.0" lengthAdjust="spacingAndGlyphs">╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝</text>
+</g></svg>
